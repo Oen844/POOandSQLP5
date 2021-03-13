@@ -1,4 +1,29 @@
 package com.P5.entities;
 
-public class Socios {
+public class Socios extends Donantes{
+
+    private float cuota;
+    private String tipoCuota;
+
+    public Socios(String nombre, String apellido, String dni, String direccion, String cuentaBancacia, float cuota, String tipoCuota) {
+        super(nombre, apellido, dni, direccion, cuentaBancacia);
+        this.cuota = cuota;
+        this.tipoCuota = tipoCuota;
+    }
+
+    public float getCuota() {
+        return cuota;
+    }
+
+    public void setCuota(float cuota) {
+        this.cuota = cuota;
+    }
+
+    public String getTipoCuota() {
+        return tipoCuota;
+    }
+
+    public void setTipoCuota(String tipoCuota) {
+        this.tipoCuota = tipoCuota;
+    }
 }
