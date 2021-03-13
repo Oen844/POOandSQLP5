@@ -14,9 +14,9 @@ public class Proyectos {
     private Date fechaFin;
     private String financiacionAportada;
 
-    ArrayList<Personal>personal = new ArrayList<>();    //lista de personal que va trabajar en el proyecto
+    ArrayList<Personal>personalProyecto = new ArrayList<>();    //lista de personal que va trabajar en el proyecto
 
-    public Proyectos(String nombre, String pais, String localizacion, String lineAccion, String subLineaAccion, Date fechaInicio, Date fechaFin, String financiacionAportada, ArrayList<Personal> personal) {
+    public Proyectos(String nombre, String pais, String localizacion, String lineAccion, String subLineaAccion, Date fechaInicio, Date fechaFin, String financiacionAportada, ArrayList<Personal> personalProyecto) {
         this.nombre = nombre;
         this.pais = pais;
         this.localizacion = localizacion;
@@ -25,7 +25,7 @@ public class Proyectos {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.financiacionAportada = financiacionAportada;
-        this.personal = personal;
+        this.personalProyecto = personalProyecto;
     }
 
     public String getNombre() {
