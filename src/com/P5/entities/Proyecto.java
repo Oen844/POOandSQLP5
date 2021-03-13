@@ -3,7 +3,7 @@ package com.P5.entities;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Proyectos {
+public class Proyecto {
 
     private String nombre;
     private String pais;
@@ -16,7 +16,7 @@ public class Proyectos {
 
     ArrayList<Personal>personalProyecto = new ArrayList<>();    //lista de personal que va trabajar en el proyecto
 
-    public Proyectos(String nombre, String pais, String localizacion, String lineAccion, String subLineaAccion, Date fechaInicio, Date fechaFin, String financiacionAportada, ArrayList<Personal> personalProyecto) {
+    public Proyecto(String nombre, String pais, String localizacion, String lineAccion, String subLineaAccion, Date fechaInicio, Date fechaFin, String financiacionAportada, ArrayList<Personal> personalProyecto) {
         this.nombre = nombre;
         this.pais = pais;
         this.localizacion = localizacion;

@@ -1,27 +1,21 @@
 package com.P5.entities;
 
-import java.util.ArrayList;
 
-public class Delegaciones {
+public class Delegacion {
     private String ciudad;
     private String direccion;
     private String telefono;
     private String email;
-    private boolean central;
+    private Delegacion delegacion;
 
 
-    public Delegaciones(String ciudad, String direccion, String telefono, String email, boolean central) {
+    public Delegacion(String ciudad, String direccion, String telefono, String email, Delegacion delegacion) {
         this.ciudad = ciudad;
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.central = central;
+        this.delegacion= delegacion;
 
-        if(central = true){         //si es una central se crean un array con las diferentes listas.
-            ArrayList<Proyectos>proyectos = new ArrayList;
-            ArrayList<Personal>personal = new ArrayList;
-            ArrayList<Aportaciones>aportaciones = new ArrayList;
-        }
     }
 
     public String getCiudad() {
@@ -56,11 +50,7 @@ public class Delegaciones {
         this.email = email;
     }
 
-    public boolean isCentral() {
-        return central;
-    }
+    public Delegacion getDelegacion() { return delegacion; }
 
-    public void setCentral(boolean central) {
-        this.central = central;
-    }
+    public void setDelegacion(Delegacion delegacion) { this.delegacion = delegacion; }
 }

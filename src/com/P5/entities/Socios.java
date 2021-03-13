@@ -1,6 +1,6 @@
 package com.P5.entities;
 
-public class Socios extends Donantes{
+public class Socios extends Donante {
 
     private float cuota;
     private String tipoCuota;

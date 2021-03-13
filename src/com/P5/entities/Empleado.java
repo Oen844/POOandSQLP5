@@ -1,10 +1,11 @@
 package com.P5.entities;
 
-public class Empleados {
+public class Empleado extends Personal {
 
     private float salario;
 
-    public Empleados(float salario) {
+    public Empleado(int idPersona, String nombre, String dni, String direccion, float salario) {
+        super(idPersona, nombre, dni, direccion);
         this.salario = salario;
     }
 

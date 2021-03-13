@@ -1,19 +1,21 @@
 package com.P5.entities;
 
-public class Donantes {
+public class Donante {
 
     private String nombre;
     private String apellido;
     private String dni;
     private String direccion;
     private String cuentaBancacia;
+    private Delegacion delegacion;
 
-    public Donantes(String nombre, String apellido, String dni, String direccion, String cuentaBancacia) {
+    public Donante(String nombre, String apellido, String dni, String direccion, String cuentaBancacia, Delegacion delegacion) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.direccion = direccion;
         this.cuentaBancacia = cuentaBancacia;
+        this.delegacion = delegacion;
     }
 
     public String getNombre() {
@@ -52,7 +54,9 @@ public class Donantes {
         return cuentaBancacia;
     }
 
-    public void setCuentaBancacia(String cuentaBancacia) {
-        this.cuentaBancacia = cuentaBancacia;
-    }
+    public void setCuentaBancacia(String cuentaBancacia) {this.cuentaBancacia = cuentaBancacia;}
+
+    public Delegacion getDelegacion() { return delegacion; }
+
+    public void setDelegacion(Delegacion delegacion) { this.delegacion = delegacion; }
 }

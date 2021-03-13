@@ -1,10 +1,10 @@
 package com.P5.entities;
 
-public class subvenciones {
+public class Subvencion {
     private String entidad;
     private String tipoEntidad;
 
-    public subvenciones(String entidad, String tipoEntidad) {
+    public Subvencion(String entidad, String tipoEntidad) {
         this.entidad = entidad;
         this.tipoEntidad = tipoEntidad;
     }
