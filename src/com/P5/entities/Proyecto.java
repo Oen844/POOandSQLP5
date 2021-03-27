@@ -91,4 +91,6 @@ public class Proyecto {
     public void setFinanciacionAportada(String financiacionAportada) {
         this.financiacionAportada = financiacionAportada;
     }
+
+
 }
