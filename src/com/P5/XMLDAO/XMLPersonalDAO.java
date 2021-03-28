@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.FileWriter;
 import java.util.List;
 
-@XmlRootElement(name= "libreria")
+@XmlRootElement(name= "personal")
 public class XMLPersonalDAO implements IPersonal {
 
     JAXBContext context = JAXBContext.newInstance(Personal.class);
