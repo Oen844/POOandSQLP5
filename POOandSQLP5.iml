@@ -8,4 +8,24 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <dependency>
+              <groupId>javax.xml.bind</groupId>
+              <artifactId>jaxb-api</artifactId>
+              <version>2.4.0-b180830.0359</version>                   <!-- 2.2.8, 2.4.0-b180830.0359  -->
+          </dependency>
+          <dependency>
+              <groupId>org.glassfish.jaxb</groupId>
+              <artifactId>jaxb-runtime</artifactId>
+              <version>2.4.0-b180830.0438</version>                   <!-- 2.3.0, 2.4.0-b180830.0438 -->
+          </dependency>
+          <dependency>
+              <groupId>javax.activation</groupId>
+              <artifactId>javax.activation-api</artifactId>
+              <version>1.2.0</version>
+          </dependency>
+          <dependency>
+              <groupId>javax.annotation</groupId>
+              <artifactId>javax.annotation-api</artifactId>
+              <version>1.3.2</version>
+          </dependency>
 </module>

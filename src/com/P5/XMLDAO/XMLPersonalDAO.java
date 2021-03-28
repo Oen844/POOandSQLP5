@@ -5,9 +5,11 @@ import com.P5.entities.Personal;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.FileWriter;
 import java.util.List;
 
+@XmlRootElement(name= "libreria")
 public class XMLPersonalDAO implements IPersonal {
 
     JAXBContext context = JAXBContext.newInstance(Personal.class);
