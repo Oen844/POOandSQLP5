@@ -56,9 +56,9 @@ public class Delegacion {
         this.email = email;
     }
 
-    public Boolean getSede() { return central; }
+    public boolean getCentral() { return central; }
 
-    public void setSede(Boolean central) { this.central = central; }
+    public void setCentral(Boolean central) { this.central = central; }
 
     @Override
     public String toString() {

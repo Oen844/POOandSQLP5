@@ -1,23 +1,33 @@
-<delegaciones>
-    <delegacion id="1">
-        <ciudad>OLMEDILLO DE ROA</ciudad>
-        <direccion>CARRETERA CATALUNYA, 67</direccion>
-        <telefono>909230555</telefono>
-        <email>klcben9l@netscape.net</email>
-        <central>false</central>
-    </delegacion>
-    <delegacion id="2">
-        <ciudad>TORRE VAL DE SAN PEDRO</ciudad>
-        <direccion>VIA NUEVA, 14</direccion>
-        <telefono>965398565</telefono>
-        <email>v0nmb6vcs4@netscape.net</email>
-        <central>true</central>
-    </delegacion>
-    <delegacion id="3">
-        <ciudad>CUBILLO</ciudad>
-        <direccion>EDIFICIO CATALUNYA, 8</direccion>
-        <telefono>935660348</telefono>
-        <email>46fm725a@yahoo.com</email>
-        <central>false</central>
-    </delegacion>
-</delegaciones>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<db>
+    <delegaciones>
+        <delegacion id="1">
+            <ciudad>OLMEDILLO DE ROA</ciudad>
+            <direccion>CARRETERA CATALUNYA, 67</direccion>
+            <telefono>909230555</telefono>
+            <email>klcben9l@netscape.net</email>
+            <central>true</central>
+        </delegacion>
+        <delegacion id="2">
+            <ciudad>TORRE VAL DE SAN PEDRO</ciudad>
+            <direccion>VIA NUEVA, 14</direccion>
+            <telefono>965398565</telefono>
+            <email>v0nmb6vcs4@netscape.net</email>
+            <central>false</central>
+        </delegacion>
+        <delegacion id="3">
+            <ciudad>CUBILLO</ciudad>
+            <direccion>EDIFICIO CATALUNYA, 8</direccion>
+            <telefono>935660348</telefono>
+            <email>46fm725a@yahoo.com</email>
+            <central>false</central>
+        </delegacion>
+        <delegacion id="4">
+            <ciudad>ESPRONCEDA</ciudad>
+            <direccion>PLAZUELA MADRID, 91</direccion>
+            <telefono>921308109</telefono>
+            <email>eys5tmxfa@netscape.com</email>
+            <central>false</central>
+        </delegacion>
+    </delegaciones>
+</db>

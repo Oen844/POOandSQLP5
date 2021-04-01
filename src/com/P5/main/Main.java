@@ -2,7 +2,10 @@ package com.P5.main;
 
 import com.P5.DAO.DelegacionImpl;
 import com.P5.entities.Delegacion;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,6 +27,9 @@ public class Main {
                 case 1:
                     listarDelegaciones();
                     break;
+                case 2:
+                    crearDelegacion();
+                    break;
                 default:
                     break;
             }
@@ -31,17 +37,57 @@ public class Main {
     }
 
     private static void imprimirMenu() {
-        System.out.println("************* MENU *************");
+        System.out.println("\n************* MENU *************");
         System.out.println("[1] Listar delegaciones.");
+        System.out.println("[2] Anhadir delegacion.");
         System.out.println("[0] Salir.");
     }
 
     public static void listarDelegaciones() {
-        DelegacionImpl delegacionDao = new DelegacionImpl();
-        List<Delegacion> delegaciones = delegacionDao.findAllDelegacion();
-        System.out.println("---- LISTA DE DELEGACIONES ----");
-        for (Delegacion delegacion : delegaciones) {
-            System.out.println(delegacion.toString());
+        try {
+            DelegacionImpl delegacionDao = new DelegacionImpl();
+            List<Delegacion> delegaciones = delegacionDao.findAllDelegacion();
+            System.out.println("---- LISTA DE DELEGACIONES ----");
+            for (Delegacion delegacion : delegaciones) {
+                System.out.println(delegacion.toString());
+            }
+        } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("\n");
+    }
+
+    public static void crearDelegacion() {
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            DelegacionImpl delegacionDao = new DelegacionImpl();
+            System.out.println("---- CREAR DELEGACIÓN ----");
+
+            System.out.print("ID: ");
+            String idStr = keyboard.nextLine();
+            System.out.print("Ciudad: ");
+            String ciudad = keyboard.nextLine();
+            System.out.print("Dirección: ");
+            String direccion = keyboard.nextLine();
+            System.out.print("Teléfono: ");
+            String telefono = keyboard.nextLine();
+            System.out.print("Email: ");
+            String email = keyboard.nextLine();
+            System.out.print("Central[Si/No]: ");
+            String centralStr = keyboard.nextLine();
+
+            Integer id = Integer.parseInt(idStr);
+            boolean central = false;
+            if (centralStr.equals("Si")) {
+                central = true;
+            }
+
+            Delegacion delegacion = new Delegacion(id, ciudad, direccion, telefono, email, central);
+            delegacionDao.createDelegacion(delegacion);
+
+            System.out.println("Delegación creada con éxito.\n");
+        } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
