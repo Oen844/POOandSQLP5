@@ -61,7 +61,26 @@ public class DelegacionImpl implements IDelegacion {
 
     @Override
     public Delegacion updateDelegacion(Delegacion delegacion) {
-        return null;
+        NodeList delegaciones = this.xmlFactory.recuperarElemento("delegacion");
+        for (int i = 0; i < delegaciones.getLength(); i++) {
+            Element delegacionXML = (Element) delegaciones.item(i);
+            if (delegacionXML.getAttribute("id").equals(delegacion.getId().toString())) {
+                delegacionXML.getElementsByTagName("ciudad").item(0).setTextContent(delegacion.getCiudad());
+                delegacionXML.getElementsByTagName("direccion").item(0).setTextContent(delegacion.getDireccion());
+                delegacionXML.getElementsByTagName("telefono").item(0).setTextContent(delegacion.getTelefono());
+                delegacionXML.getElementsByTagName("email").item(0).setTextContent(delegacion.getEmail());
+                delegacionXML.getElementsByTagName("central").item(0).setTextContent(Boolean.toString(delegacion.getCentral()));
+
+                try {
+                    this.xmlFactory.eliminarElemento("delegaciones", "delegacion", delegacion.getId().toString());
+                    this.xmlFactory.anhadirElemento("delegaciones", delegacionXML);
+                } catch (TransformerException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+
+        return delegacion;
     }
 
     @Override

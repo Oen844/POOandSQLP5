@@ -1,5 +1,6 @@
 package com.P5.xml;
 
+import com.P5.DTO.DelegacionDTO;
 import com.P5.entities.Delegacion;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -73,6 +74,20 @@ public class XMLManager {
         parent.appendChild(element);
         this.doc.getDocumentElement().appendChild(parent);
 
+        this.escribirDocumento();
+    }
+
+    public void eliminarElemento(String parentTagName, String elementTagName, String elementId) {
+        NodeList delegaciones = this.doc.getElementsByTagName(elementTagName);
+        for (int i = 0; i < delegaciones.getLength(); i++) {
+            Element delegacionXML = (Element) delegaciones.item(i);
+            if (delegacionXML.getAttribute("id").equals(elementId)) {
+                this.doc.getElementsByTagName(parentTagName).item(0).removeChild(delegacionXML);
+            }
+        }
+    }
+
+    private void escribirDocumento() throws TransformerException {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource domSource = new DOMSource(this.doc);
