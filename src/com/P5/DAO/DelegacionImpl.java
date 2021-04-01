@@ -48,6 +48,14 @@ public class DelegacionImpl implements IDelegacion {
 
     @Override
     public Delegacion readDelegacion(String id) {
+        NodeList delegaciones = this.xmlFactory.recuperarElemento("delegacion");
+        for (int i = 0; i < delegaciones.getLength(); i++) {
+            Element delegacionXML = (Element) delegaciones.item(i);
+            if (delegacionXML.getAttribute("id").equals(id)) {
+                return DelegacionDTO.toEntity(delegacionXML);
+            }
+        }
+
         return null;
     }
 

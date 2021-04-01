@@ -30,6 +30,9 @@ public class Main {
                 case 2:
                     crearDelegacion();
                     break;
+                case 3:
+                    leerDelegacion();
+                    break;
                 default:
                     break;
             }
@@ -40,6 +43,7 @@ public class Main {
         System.out.println("\n************* MENU *************");
         System.out.println("[1] Listar delegaciones.");
         System.out.println("[2] Anhadir delegacion.");
+        System.out.println("[3] Leer delegacion.");
         System.out.println("[0] Salir.");
     }
 
@@ -86,6 +90,21 @@ public class Main {
             delegacionDao.createDelegacion(delegacion);
 
             System.out.println("Delegación creada con éxito.\n");
+        } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void leerDelegacion() {
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            DelegacionImpl delegacionDao = new DelegacionImpl();
+            System.out.println("---- LEER DELEGACIÓN ----");
+
+            System.out.print("ID: ");
+            String idStr = keyboard.nextLine();
+            Delegacion delegacion = delegacionDao.readDelegacion(idStr);
+            System.out.println(delegacion);
         } catch (SAXException | ParserConfigurationException | IOException e) {
             System.out.println(e.getMessage());
         }
