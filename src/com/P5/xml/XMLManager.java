@@ -71,18 +71,23 @@ public class XMLManager {
 
     public void anhadirElemento(String parentName, Element element) throws TransformerException {
         Node parent = recuperarElemento(parentName).item(0);
+        if (parent == null) {
+            parent = this.doc.createElement(parentName);
+        }
         parent.appendChild(element);
         this.doc.getDocumentElement().appendChild(parent);
 
         this.escribirDocumento();
     }
 
-    public void eliminarElemento(String parentTagName, String elementTagName, String elementId) {
-        NodeList delegaciones = this.doc.getElementsByTagName(elementTagName);
-        for (int i = 0; i < delegaciones.getLength(); i++) {
-            Element delegacionXML = (Element) delegaciones.item(i);
+    public void eliminarElemento(String parentTagName, String elementTagName, String elementId) throws TransformerException {
+        NodeList nodeList = this.doc.getElementsByTagName(elementTagName);
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Element delegacionXML = (Element) nodeList.item(i);
             if (delegacionXML.getAttribute("id").equals(elementId)) {
                 this.doc.getElementsByTagName(parentTagName).item(0).removeChild(delegacionXML);
+
+                this.escribirDocumento();
             }
         }
     }

@@ -85,6 +85,16 @@ public class DelegacionImpl implements IDelegacion {
 
     @Override
     public void deleteDelegacion(String id) {
-
+        NodeList delegaciones = this.xmlFactory.recuperarElemento("delegacion");
+        for (int i = 0; i < delegaciones.getLength(); i++) {
+            Element delegacionXML = (Element) delegaciones.item(i);
+            if (delegacionXML.getAttribute("id").equals(id)) {
+                try {
+                    this.xmlFactory.eliminarElemento("delegaciones", "delegacion", id);
+                } catch (TransformerException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
     }
 }

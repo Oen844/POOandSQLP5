@@ -36,6 +36,9 @@ public class Main {
                 case 4:
                     actualizarDelegacion();
                     break;
+                case 5:
+                    eliminarDelegacion();
+                    break;
                 default:
                     break;
             }
@@ -48,6 +51,7 @@ public class Main {
         System.out.println("[2] Anhadir delegacion.");
         System.out.println("[3] Leer delegacion.");
         System.out.println("[4] Actualizar delegacion.");
+        System.out.println("[5] Eliminar delegacion.");
         System.out.println("[0] Salir.");
     }
 
@@ -59,6 +63,7 @@ public class Main {
             for (Delegacion delegacion : delegaciones) {
                 System.out.println(delegacion.toString());
             }
+            System.out.println("Items: " + delegaciones.size());
         } catch (SAXException | ParserConfigurationException | IOException e) {
             System.out.println(e.getMessage());
         }
@@ -128,7 +133,7 @@ public class Main {
             String idStr = keyboard.nextLine();
             Delegacion delegacion = delegacionDao.readDelegacion(idStr);
             if (delegacion == null) {
-                System.out.println("El ID de la delegación no existe y se puede actualizar.");
+                System.out.println("El ID de la delegación no existe.");
             } else {
                 System.out.format("Ciudad [%s]: ", delegacion.getCiudad());
                 String ciudad = keyboard.nextLine();
@@ -164,6 +169,26 @@ public class Main {
 
                 delegacionDao.updateDelegacion(delegacion);
                 System.out.println("Delegación actualizada con éxito.\n");
+            }
+        } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void eliminarDelegacion() {
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            DelegacionImpl delegacionDao = new DelegacionImpl();
+            System.out.println("---- ELIMINAR DELEGACIÓN ----");
+
+            System.out.print("ID: ");
+            String idStr = keyboard.nextLine();
+            Delegacion delegacion = delegacionDao.readDelegacion(idStr);
+            if (delegacion == null) {
+                System.out.println("El ID de la delegación no existe.");
+            } else {
+                delegacionDao.deleteDelegacion(delegacion.getId().toString());
+                System.out.println("Delegación eliminada con éxito.\n");
             }
         } catch (SAXException | ParserConfigurationException | IOException e) {
             System.out.println(e.getMessage());
