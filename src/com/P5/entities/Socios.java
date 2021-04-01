@@ -5,8 +5,8 @@ public class Socios extends Donante {
     private float cuota;
     private String tipoCuota;
 
-    public Socios(String nombre, String apellido, String dni, String direccion, String cuentaBancacia, float cuota, String tipoCuota) {
-        super(nombre, apellido, dni, direccion, cuentaBancacia);
+    public Socios(String nombre, String apellido, String dni, String direccion, String cuentaBancacia, Delegacion delegacion, float cuota, String tipoCuota) {
+        super(nombre, apellido, dni, direccion, cuentaBancacia, delegacion);
         this.cuota = cuota;
         this.tipoCuota = tipoCuota;
     }

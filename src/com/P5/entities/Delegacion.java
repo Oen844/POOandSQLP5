@@ -2,20 +2,26 @@ package com.P5.entities;
 
 
 public class Delegacion {
+    private final Integer id;
     private String ciudad;
     private String direccion;
     private String telefono;
     private String email;
-    private Delegacion delegacion;
+    private Boolean central;
 
 
-    public Delegacion(String ciudad, String direccion, String telefono, String email, Delegacion delegacion) {
+    public Delegacion(Integer id, String ciudad, String direccion, String telefono, String email, Boolean central) {
+        this.id = id;
         this.ciudad = ciudad;
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.delegacion= delegacion;
+        this.central = central;
 
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getCiudad() {
@@ -50,7 +56,19 @@ public class Delegacion {
         this.email = email;
     }
 
-    public Delegacion getDelegacion() { return delegacion; }
+    public Boolean getSede() { return central; }
 
-    public void setDelegacion(Delegacion delegacion) { this.delegacion = delegacion; }
+    public void setSede(Boolean central) { this.central = central; }
+
+    @Override
+    public String toString() {
+        return "Delegacion{" +
+                "id=" + id +
+                ", ciudad='" + ciudad + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                ", delegacion=" + central +
+                '}';
+    }
 }

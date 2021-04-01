@@ -5,11 +5,13 @@ import com.P5.entities.Delegacion;
 import java.util.List;
 
 public interface IDelegacion {
-    public List<Delegacion> createDelegacion();
+    public List<Delegacion> findAllDelegacion();
 
-    public Delegacion readDelegacion(String ciudad);
+    public void createDelegacion(Delegacion delegacion);
 
-    public void updateDelegacion(Delegacion delegacion);
+    public Delegacion readDelegacion(String id);
 
-    public void deleteDelegacion(Delegacion delegacion);
+    public Delegacion updateDelegacion(Delegacion delegacion);
+
+    public void deleteDelegacion(String id);
 }
