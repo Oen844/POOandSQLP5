@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<db>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><db>
 	<delegaciones>
 		<delegacion id="1">
 			<ciudad>OLMEDILLO DE ROA</ciudad>
@@ -31,9 +30,10 @@
 		</delegacion>
 	</delegaciones>
 	<proyectos>
+		
 		<proyecto>
 			<nombre>Proyecto 1</nombre>
-			<pais>Galicia</pais>
+			<pais>España</pais>
 			<localizacion>Arbo</localizacion>
 			<lineaAccion>1</lineaAccion>
 			<subLineaAccion>1.1</subLineaAccion>
@@ -48,34 +48,16 @@
 			<delegacion>1</delegacion>
 		</proyecto>
 		<proyecto>
-			<nombre>A</nombre>
-			<pais>E</pais>
-			<localizacion>A</localizacion>
-			<lineaAccion>E</lineaAccion>
-			<subLineaAccion>F</subLineaAccion>
-			<fechaInicio>04/01/2021</fechaInicio>
-			<fechaFin>04/01/2021</fechaFin>
-			<socioLocal>F</socioLocal>
-			<financiador>R</financiador>
-			<financiacionAportada>23.0236</financiacionAportada>
-			<personalAsociado>
-				<personal>1</personal>
-				<personal>2</personal>
-				<personal>3</personal>
-			</personalAsociado>
-			<delegacion>1</delegacion>
-		</proyecto>
-		<proyecto>
 			<nombre>SADF</nombre>
-			<pais>SDFG</pais>
-			<localizacion>ASDF</localizacion>
-			<lineaAccion>ASDF</lineaAccion>
+			<pais>España</pais>
+			<localizacion>Arbo</localizacion>
+			<lineaAccion>1</lineaAccion>
 			<subLineaAccion>ASDF</subLineaAccion>
 			<fechaInicio>04/01/2021</fechaInicio>
 			<fechaFin>04/01/2021</fechaFin>
-			<socioLocal>ASDF</socioLocal>
-			<financiador>20.365€</financiador>
-			<financiacionAportada>3423</financiacionAportada>
+			<socioLocal>Me</socioLocal>
+			<financiador>Aquel</financiador>
+			<financiacionAportada>200.000€</financiacionAportada>
 			<personalAsociado>
 				<personal>1</personal>
 				<personal>2</personal>

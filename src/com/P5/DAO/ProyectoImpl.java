@@ -13,6 +13,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,11 +76,46 @@ public class ProyectoImpl implements IProyecto {
 
     @Override
     public Proyecto updateProyecto(Proyecto proyecto) {
-        return null;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("DD/MM/YYYY");
+        NodeList proyectos = this.xmlFactory.recuperarElemento("proyecto");
+        for (int i = 0; i < proyectos.getLength(); i++) {
+            Element proyectoXml = (Element) proyectos.item(i);
+            Node nombreNodeXml = this.xmlFactory.recuperarElementoEnElemento("nombre", proyectoXml);
+            if (proyectoXml.getElementsByTagName("nombre").item(0).getTextContent().equals(nombreNodeXml.getTextContent())) {
+                proyectoXml.getElementsByTagName("pais").item(0).setTextContent(proyecto.getPais());
+                proyectoXml.getElementsByTagName("localizacion").item(0).setTextContent(proyecto.getLocalizacion());
+                proyectoXml.getElementsByTagName("lineaAccion").item(0).setTextContent(proyecto.getLineaAccion());
+                proyectoXml.getElementsByTagName("fechaInicio").item(0).setTextContent(dateFormat.format(proyecto.getFechaInicio()));
+                proyectoXml.getElementsByTagName("fechaFin").item(0).setTextContent(dateFormat.format(proyecto.getFechaFin()));
+                proyectoXml.getElementsByTagName("socioLocal").item(0).setTextContent(proyecto.getSocioLocal());
+                proyectoXml.getElementsByTagName("financiador").item(0).setTextContent(proyecto.getFinanciador());
+                proyectoXml.getElementsByTagName("financiacionAportada").item(0).setTextContent(proyecto.getFinanciacionAportada());
+
+                try {
+                    this.xmlFactory.eliminarElemento("proyectos`", "proyecto`", proyecto.getNombre());
+                    this.xmlFactory.anhadirElemento("proyectos", proyectoXml);
+                } catch (TransformerException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+
+        return proyecto;
     }
 
     @Override
-    public void deleteProyecto(String id) {
-
+    public void deleteProyecto(String nombre) {
+        NodeList proyectos = this.xmlFactory.recuperarElemento("proyecto");
+        for (int i = 0; i < proyectos.getLength(); i++) {
+            Element proyectoXML = (Element) proyectos.item(i);
+            Node nombreNodeXml = this.xmlFactory.recuperarElementoEnElemento("nombre", proyectoXML);
+            if (proyectoXML.getElementsByTagName("nombre").item(0).getTextContent().equals(nombreNodeXml.getTextContent())) {
+                try {
+                    this.xmlFactory.eliminarElemento("proyectos", "proyecto", nombre);
+                } catch (TransformerException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
     }
 }
