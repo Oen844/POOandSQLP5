@@ -1,11 +1,17 @@
 package com.P5.main;
 
 import com.P5.DAO.DelegacionImpl;
+import com.P5.DAO.ProyectoImpl;
 import com.P5.entities.Delegacion;
+import com.P5.entities.Proyecto;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,6 +45,9 @@ public class Main {
                 case 5:
                     eliminarDelegacion();
                     break;
+                case 6:
+                    crearProyecto();
+                    break;
                 default:
                     break;
             }
@@ -52,6 +61,7 @@ public class Main {
         System.out.println("[3] Leer delegacion.");
         System.out.println("[4] Actualizar delegacion.");
         System.out.println("[5] Eliminar delegacion.");
+        System.out.println("[6] Anhadir proyecto.");
         System.out.println("[0] Salir.");
     }
 
@@ -191,6 +201,48 @@ public class Main {
                 System.out.println("Delegación eliminada con éxito.\n");
             }
         } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void crearProyecto() {
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            ProyectoImpl proyectoDao = new ProyectoImpl();
+            DelegacionImpl delegacionDao = new DelegacionImpl();
+            System.out.println("---- CREAR PROYECTO ----");
+
+            System.out.print("Nombre: ");
+            String nombre = keyboard.nextLine();
+            System.out.print("Pais: ");
+            String pais = keyboard.nextLine();
+            System.out.print("Lozalizacion: ");
+            String localizacion = keyboard.nextLine();
+            System.out.print("Linea de accion: ");
+            String lineaAccion = keyboard.nextLine();
+            System.out.print("Sublinea de accion: ");
+            String subLineaAccion = keyboard.nextLine();
+            System.out.print("Fecha de inicio [DD/MM/YYY]: ");
+            String fechaInicio = keyboard.nextLine();
+            System.out.print("Fecha de finalizacion [DD/MM/YYY]: ");
+            String fechaFin = keyboard.nextLine();
+            System.out.print("Socio local: ");
+            String socioLocal = keyboard.nextLine();
+            System.out.print("Financiador: ");
+            String financiador = keyboard.nextLine();
+            System.out.print("Financiacion Aportada: ");
+            String financiacionAportada = keyboard.nextLine();
+            System.out.print("ID de la delegacion asociada: ");
+            String delegacionId = keyboard.nextLine();
+
+            Delegacion delegacion = delegacionDao.readDelegacion(delegacionId);
+            Date fechaInicioDate = new SimpleDateFormat("DD/MM/YYYY").parse(fechaInicio);
+            Date fechaFinDate = new SimpleDateFormat("DD/MM/YYYY").parse(fechaFin);
+            Proyecto proyecto = new Proyecto(nombre, pais, localizacion, lineaAccion, subLineaAccion, fechaInicioDate, fechaFinDate, socioLocal, financiador, financiacionAportada, new ArrayList<>(), delegacion);
+            proyectoDao.createProyecto(proyecto);
+
+            System.out.println("Delegación creada con éxito.\n");
+        } catch (SAXException | ParserConfigurationException | IOException | ParseException e) {
             System.out.println(e.getMessage());
         }
     }

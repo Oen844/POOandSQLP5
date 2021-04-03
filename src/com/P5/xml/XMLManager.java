@@ -1,7 +1,7 @@
 package com.P5.xml;
 
-import com.P5.DTO.DelegacionDTO;
 import com.P5.entities.Delegacion;
+import com.P5.entities.Proyecto;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -12,7 +12,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -69,6 +68,40 @@ public class XMLManager {
         return delegacionXML;
     }
 
+    public Element crearElementoProyecto(Proyecto proyecto) {
+        Element proyectoXML = this.doc.createElement("proyecto");
+
+        proyectoXML.setAttribute("id", proyecto.getId().toString());
+
+        Element ciudad = this.doc.createElement("ciudad");
+        ciudad.appendChild(this.doc.createTextNode(proyecto.getCiudad()));
+        proyectoXML.appendChild(ciudad);
+
+        Element direccion = this.doc.createElement("direccion");
+        direccion.appendChild(this.doc.createTextNode(delegacion.getDireccion()));
+        proyectoXML.appendChild(direccion);
+
+        Element telefono = this.doc.createElement("telefono");
+        telefono.appendChild(this.doc.createTextNode(delegacion.getTelefono()));
+        proyectoXML.appendChild(telefono);
+
+        Element email = this.doc.createElement("email");
+        email.appendChild(this.doc.createTextNode(delegacion.getEmail()));
+        proyectoXML.appendChild(email);
+
+        Element central = this.doc.createElement("central");
+        String centralStr = "";
+        if (delegacion.getCentral()) {
+            centralStr = "true";
+        } else {
+            centralStr = "false";
+        }
+        central.appendChild(this.doc.createTextNode(centralStr));
+        proyectoXML.appendChild(central);
+
+        return proyectoXML;
+    }
+
     public void anhadirElemento(String parentName, Element element) throws TransformerException {
         Node parent = recuperarElemento(parentName).item(0);
         if (parent == null) {
@@ -86,10 +119,10 @@ public class XMLManager {
             Element delegacionXML = (Element) nodeList.item(i);
             if (delegacionXML.getAttribute("id").equals(elementId)) {
                 this.doc.getElementsByTagName(parentTagName).item(0).removeChild(delegacionXML);
-
-                this.escribirDocumento();
             }
         }
+
+        this.escribirDocumento();
     }
 
     private void escribirDocumento() throws TransformerException {
