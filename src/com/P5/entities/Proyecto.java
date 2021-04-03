@@ -135,7 +135,7 @@ public class Proyecto {
                 "nombre='" + nombre + '\'' +
                 ", pais='" + pais + '\'' +
                 ", localizacion='" + localizacion + '\'' +
-                ", lineAccion='" + lineaAccion + '\'' +
+                ", lineaAccion='" + lineaAccion + '\'' +
                 ", subLineaAccion='" + subLineaAccion + '\'' +
                 ", fechaInicio=" + fechaInicio +
                 ", fechaFin=" + fechaFin +

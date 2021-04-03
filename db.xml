@@ -35,7 +35,7 @@
 			<nombre>Proyecto 1</nombre>
 			<pais>Galicia</pais>
 			<localizacion>Arbo</localizacion>
-			<lineAccion>1</lineAccion>
+			<lineaAccion>1</lineaAccion>
 			<subLineaAccion>1.1</subLineaAccion>
 			<fechaInicio>04/01/2021</fechaInicio>
 			<fechaFin>04/01/2021</fechaFin>
@@ -51,7 +51,7 @@
 			<nombre>A</nombre>
 			<pais>E</pais>
 			<localizacion>A</localizacion>
-			<lineAccion>E</lineAccion>
+			<lineaAccion>E</lineaAccion>
 			<subLineaAccion>F</subLineaAccion>
 			<fechaInicio>04/01/2021</fechaInicio>
 			<fechaFin>04/01/2021</fechaFin>
@@ -69,7 +69,7 @@
 			<nombre>SADF</nombre>
 			<pais>SDFG</pais>
 			<localizacion>ASDF</localizacion>
-			<lineAccion>ASDF</lineAccion>
+			<lineaAccion>ASDF</lineaAccion>
 			<subLineaAccion>ASDF</subLineaAccion>
 			<fechaInicio>04/01/2021</fechaInicio>
 			<fechaFin>04/01/2021</fechaFin>

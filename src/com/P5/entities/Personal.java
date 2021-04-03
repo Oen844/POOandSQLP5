@@ -45,4 +45,13 @@ public class Personal {
         this.direccion = direccion;
     }
 
+    @Override
+    public String toString() {
+        return "Personal{" +
+                "idPersona=" + idPersona +
+                ", nombre='" + nombre + '\'' +
+                ", nif='" + nif + '\'' +
+                ", direccion='" + direccion + '\'' +
+                '}';
+    }
 }

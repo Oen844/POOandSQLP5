@@ -19,7 +19,6 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.logging.SimpleFormatter;
 
 public class XMLManager {
     Document doc;
@@ -34,6 +33,17 @@ public class XMLManager {
 
     public NodeList recuperarElemento(String elementTagName) {
         return this.doc.getElementsByTagName(elementTagName);
+    }
+
+    public Node recuperarElementoEnElemento(String elementTagName, Node element) {
+        NodeList childNodes = element.getChildNodes();
+        for (int i = 0; i < childNodes.getLength(); i++) {
+            if (childNodes.item(i).getNodeName().equals(elementTagName)) {
+                return childNodes.item(i);
+            }
+        }
+
+        return null;
     }
 
     public Element crearElementoDelegacion(Delegacion delegacion) {
@@ -86,9 +96,9 @@ public class XMLManager {
         localizacion.appendChild(this.doc.createTextNode(proyecto.getLocalizacion()));
         proyectoXML.appendChild(localizacion);
 
-        Element lineAccion = this.doc.createElement("lineAccion");
-        lineAccion.appendChild(this.doc.createTextNode(proyecto.getLineaAccion()));
-        proyectoXML.appendChild(lineAccion);
+        Element lineaAccion = this.doc.createElement("lineaAccion");
+        lineaAccion.appendChild(this.doc.createTextNode(proyecto.getLineaAccion()));
+        proyectoXML.appendChild(lineaAccion);
 
         Element subLineaAccion = this.doc.createElement("subLineaAccion");
         subLineaAccion.appendChild(this.doc.createTextNode(proyecto.getSubLineaAccion()));

@@ -48,6 +48,9 @@ public class Main {
                     eliminarDelegacion();
                     break;
                 case 6:
+                    listarProyectos();
+                    break;
+                case 7:
                     crearProyecto();
                     break;
                 default:
@@ -63,7 +66,8 @@ public class Main {
         System.out.println("[3] Leer delegacion.");
         System.out.println("[4] Actualizar delegacion.");
         System.out.println("[5] Eliminar delegacion.");
-        System.out.println("[6] Anhadir proyecto.");
+        System.out.println("[6] Listar proyectos de una delegacion.");
+        System.out.println("[7] Anhadir proyecto.");
         System.out.println("[0] Salir.");
     }
 
@@ -205,6 +209,26 @@ public class Main {
         } catch (SAXException | ParserConfigurationException | IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static void listarProyectos() {
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            ProyectoImpl proyectoDao = new ProyectoImpl();
+
+            System.out.print("ID Delegacion: ");
+            String idStr = keyboard.nextLine();
+
+            List<Proyecto> proyectos = proyectoDao.findProyectosDelegacion(idStr);
+            System.out.println("---- LISTA DE PROYECTOS DE LA DELEGACION ----");
+            for (Proyecto proyecto : proyectos) {
+                System.out.println(proyecto.toString());
+            }
+            System.out.println("Items: " + proyectos.size());
+        } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("\n");
     }
 
     public static void crearProyecto() {
