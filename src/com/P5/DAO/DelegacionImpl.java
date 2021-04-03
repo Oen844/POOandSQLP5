@@ -53,6 +53,7 @@ public class DelegacionImpl implements IDelegacion {
             Element delegacionXML = (Element) delegaciones.item(i);
             if (delegacionXML.getAttribute("id").equals(id)) {
                 return DelegacionDTO.toEntity(delegacionXML);
+
             }
         }
 

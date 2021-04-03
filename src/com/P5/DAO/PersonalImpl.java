@@ -1,10 +1,13 @@
 package com.P5.DAO;
 
 import com.P5.DAO.interfaces.IPersonal;
+import com.P5.DTO.DelegacionDTO;
+import com.P5.DTO.PersonalDTO;
 import com.P5.entities.Personal;
 import com.P5.entities.Proyecto;
 import com.P5.xml.XMLManager;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -28,8 +31,15 @@ public class PersonalImpl implements IPersonal {
     }
 
     @Override
-    public Personal readPersonal(Integer idPersona) {
+    public Personal readPersonal(String id) {
+        NodeList personales = this.xmlFactory.recuperarElemento("personal");
+        for (int i = 0; i < personales.getLength(); i++) {
+            Element personalXML = (Element) personales.item(i);
+            if (personalXML.getAttribute("id", equals(id))) {
+                return PersonalDTO.toEntity(personalXML);
+            }
 
+        }
 
         return null;
     }

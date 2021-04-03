@@ -57,6 +57,14 @@ public class Main {
                 case 8:
                     leerProyecto();
                     break;
+                case 9:
+                    crearPersonales();
+                    break;
+                case 10:
+                    buscarPersonal();
+                    break;
+                case: 11
+                    //funcion
                 default:
                     break;
             }
@@ -170,6 +178,27 @@ public class Main {
         } catch (SAXException | ParserConfigurationException | IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static void buscarPersonal(){
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            //DelegacionImpl delegacionDao = new DelegacionImpl();
+            PersonalImpl personalDao = new PersonalImpl();
+            System.out.println("---- LEER DELEGACIÓN ----");
+
+            System.out.print("ID: ");
+            String idStr = keyboard.nextLine();
+            Personal personal = personalDao.readPersonal(idStr);
+            if (personal != null) {
+                System.out.println(personal);
+            } else {
+                System.out.println("El ID de la personal no existe.");
+            }
+        } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private static void actualizarDelegacion() {
