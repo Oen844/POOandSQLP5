@@ -25,7 +25,7 @@ public class Main {
             imprimirMenu();
 
             System.out.print("\nOpción: ");
-            option = keyboard.nextInt();
+            option = Integer.parseInt(keyboard.nextLine());
             System.out.println();
 
             switch (option) {
@@ -59,6 +59,9 @@ public class Main {
                 case 9:
                     actualizarProyecto();
                     break;
+                case 10:
+                    eliminarProyecto();
+                    break;
                 default:
                     break;
             }
@@ -76,6 +79,7 @@ public class Main {
         System.out.println("[7] Anhadir proyecto.");
         System.out.println("[8] Leer proyecto.");
         System.out.println("[9] Actualizar proyecto.");
+        System.out.println("[10] Eliminar proyecto.");
         System.out.println("[0] Salir.");
     }
 
@@ -385,4 +389,25 @@ public class Main {
             System.out.println(e.getMessage());
         }
     }
+
+    private static void eliminarProyecto() {
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            ProyectoImpl proyectoDao = new ProyectoImpl();
+            System.out.println("---- ELIMINAR PROYECTO ----");
+
+            System.out.print("Nombre del proyecto: ");
+            String nombreProyecto = keyboard.nextLine();
+            Proyecto proyecto = proyectoDao.readProyecto(nombreProyecto);
+            if (proyecto == null) {
+                System.out.println("El proyecto no existe.");
+            } else {
+                proyectoDao.deleteProyecto(nombreProyecto);
+                System.out.println("Delegación eliminada con éxito.\n");
+            }
+        } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

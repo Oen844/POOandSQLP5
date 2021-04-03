@@ -104,7 +104,18 @@ public class ProyectoImpl implements IProyecto {
     }
 
     @Override
-    public void deleteProyecto(String id) {
-
+    public void deleteProyecto(String nombre) {
+        NodeList proyectos = this.xmlFactory.recuperarElemento("proyecto");
+        for (int i = 0; i < proyectos.getLength(); i++) {
+            Element proyectoXML = (Element) proyectos.item(i);
+            Node nombreNodeXml = this.xmlFactory.recuperarElementoEnElemento("nombre", proyectoXML);
+            if (proyectoXML.getElementsByTagName("nombre").item(0).getTextContent().equals(nombreNodeXml.getTextContent())) {
+                try {
+                    this.xmlFactory.eliminarElemento("proyectos", "proyecto", nombre);
+                } catch (TransformerException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
     }
 }

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<db>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><db>
 	<delegaciones>
 		<delegacion id="1">
 			<ciudad>OLMEDILLO DE ROA</ciudad>
@@ -31,24 +30,7 @@
 		</delegacion>
 	</delegaciones>
 	<proyectos>
-		<proyecto>
-			<nombre>A</nombre>
-			<pais>E</pais>
-			<localizacion>A</localizacion>
-			<lineaAccion>E</lineaAccion>
-			<subLineaAccion>F</subLineaAccion>
-			<fechaInicio>04/01/2021</fechaInicio>
-			<fechaFin>04/01/2021</fechaFin>
-			<socioLocal>F</socioLocal>
-			<financiador>R</financiador>
-			<financiacionAportada>23.0236</financiacionAportada>
-			<personalAsociado>
-				<personal>1</personal>
-				<personal>2</personal>
-				<personal>3</personal>
-			</personalAsociado>
-			<delegacion>1</delegacion>
-		</proyecto>
+		
 		<proyecto>
 			<nombre>Proyecto 1</nombre>
 			<pais>España</pais>
