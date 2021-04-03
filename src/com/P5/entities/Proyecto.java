@@ -8,7 +8,7 @@ public class Proyecto {
     private String nombre;
     private String pais;
     private String localizacion;
-    private String lineAccion;
+    private String lineaAccion;
     private String subLineaAccion;
     private Date fechaInicio;
     private Date fechaFin;
@@ -18,11 +18,11 @@ public class Proyecto {
     private ArrayList<Personal> personalAsociado;
     private Delegacion delegacion;
 
-    public Proyecto(String nombre, String pais, String localizacion, String lineAccion, String subLineaAccion, Date fechaInicio, Date fechaFin, String socioLocal, String financiador, String financiacionAportada, ArrayList<Personal> personalAsociado, Delegacion delegacion) {
+    public Proyecto(String nombre, String pais, String localizacion, String lineaAccion, String subLineaAccion, Date fechaInicio, Date fechaFin, String socioLocal, String financiador, String financiacionAportada, ArrayList<Personal> personalAsociado, Delegacion delegacion) {
         this.nombre = nombre;
         this.pais = pais;
         this.localizacion = localizacion;
-        this.lineAccion = lineAccion;
+        this.lineaAccion = lineaAccion;
         this.subLineaAccion = subLineaAccion;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -57,12 +57,12 @@ public class Proyecto {
         this.localizacion = localizacion;
     }
 
-    public String getLineAccion() {
-        return lineAccion;
+    public String getLineaAccion() {
+        return lineaAccion;
     }
 
-    public void setLineAccion(String lineAccion) {
-        this.lineAccion = lineAccion;
+    public void setLineaAccion(String lineaAccion) {
+        this.lineaAccion = lineaAccion;
     }
 
     public String getSubLineaAccion() {
@@ -135,7 +135,7 @@ public class Proyecto {
                 "nombre='" + nombre + '\'' +
                 ", pais='" + pais + '\'' +
                 ", localizacion='" + localizacion + '\'' +
-                ", lineAccion='" + lineAccion + '\'' +
+                ", lineAccion='" + lineaAccion + '\'' +
                 ", subLineaAccion='" + subLineaAccion + '\'' +
                 ", fechaInicio=" + fechaInicio +
                 ", fechaFin=" + fechaFin +

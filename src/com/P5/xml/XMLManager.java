@@ -18,6 +18,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.logging.SimpleFormatter;
 
 public class XMLManager {
     Document doc;
@@ -70,34 +72,59 @@ public class XMLManager {
 
     public Element crearElementoProyecto(Proyecto proyecto) {
         Element proyectoXML = this.doc.createElement("proyecto");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("DD/MM/YYYY");
 
-        proyectoXML.setAttribute("id", proyecto.getId().toString());
+        Element nombre = this.doc.createElement("nombre");
+        nombre.appendChild(this.doc.createTextNode(proyecto.getNombre()));
+        proyectoXML.appendChild(nombre);
 
-        Element ciudad = this.doc.createElement("ciudad");
-        ciudad.appendChild(this.doc.createTextNode(proyecto.getCiudad()));
-        proyectoXML.appendChild(ciudad);
+        Element pais = this.doc.createElement("pais");
+        pais.appendChild(this.doc.createTextNode(proyecto.getPais()));
+        proyectoXML.appendChild(pais);
 
-        Element direccion = this.doc.createElement("direccion");
-        direccion.appendChild(this.doc.createTextNode(delegacion.getDireccion()));
-        proyectoXML.appendChild(direccion);
+        Element localizacion = this.doc.createElement("localizacion");
+        localizacion.appendChild(this.doc.createTextNode(proyecto.getLocalizacion()));
+        proyectoXML.appendChild(localizacion);
 
-        Element telefono = this.doc.createElement("telefono");
-        telefono.appendChild(this.doc.createTextNode(delegacion.getTelefono()));
-        proyectoXML.appendChild(telefono);
+        Element lineAccion = this.doc.createElement("lineAccion");
+        lineAccion.appendChild(this.doc.createTextNode(proyecto.getLineaAccion()));
+        proyectoXML.appendChild(lineAccion);
 
-        Element email = this.doc.createElement("email");
-        email.appendChild(this.doc.createTextNode(delegacion.getEmail()));
-        proyectoXML.appendChild(email);
+        Element subLineaAccion = this.doc.createElement("subLineaAccion");
+        subLineaAccion.appendChild(this.doc.createTextNode(proyecto.getSubLineaAccion()));
+        proyectoXML.appendChild(subLineaAccion);
 
-        Element central = this.doc.createElement("central");
-        String centralStr = "";
-        if (delegacion.getCentral()) {
-            centralStr = "true";
-        } else {
-            centralStr = "false";
+        Element fechaInicio = this.doc.createElement("fechaInicio");
+        fechaInicio.appendChild(this.doc.createTextNode(dateFormat.format(proyecto.getFechaInicio())));
+        proyectoXML.appendChild(fechaInicio);
+
+        Element fechaFin = this.doc.createElement("fechaFin");
+        fechaFin.appendChild(this.doc.createTextNode(dateFormat.format(proyecto.getFechaFin())));
+        proyectoXML.appendChild(fechaFin);
+
+        Element socioLocal = this.doc.createElement("socioLocal");
+        socioLocal.appendChild(this.doc.createTextNode(proyecto.getSocioLocal()));
+        proyectoXML.appendChild(socioLocal);
+
+        Element financiador = this.doc.createElement("financiador");
+        financiador.appendChild(this.doc.createTextNode(proyecto.getFinanciador()));
+        proyectoXML.appendChild(financiador);
+
+        Element financiacionAportada = this.doc.createElement("financiacionAportada");
+        financiacionAportada.appendChild(this.doc.createTextNode(proyecto.getFinanciacionAportada()));
+        proyectoXML.appendChild(financiacionAportada);
+
+        Element personalAsociado = this.doc.createElement("personalAsociado");
+        for (int i = 0; i < proyecto.getPersonalAsociado().size(); i++) {
+            Element personalId = this.doc.createElement("personal");
+            personalId.appendChild(this.doc.createTextNode(Integer.toString(proyecto.getPersonalAsociado().get(i).getIdPersona())));
+            personalAsociado.appendChild(personalId);
         }
-        central.appendChild(this.doc.createTextNode(centralStr));
-        proyectoXML.appendChild(central);
+        proyectoXML.appendChild(personalAsociado);
+
+        Element delegacion = this.doc.createElement("delegacion");
+        delegacion.appendChild(this.doc.createTextNode(proyecto.getDelegacion().getId().toString()));
+        proyectoXML.appendChild(delegacion);
 
         return proyectoXML;
     }

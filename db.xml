@@ -1,33 +1,87 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <db>
-    <delegaciones>
-        <delegacion id="1">
-            <ciudad>OLMEDILLO DE ROA</ciudad>
-            <direccion>CARRETERA CATALUNYA, 67</direccion>
-            <telefono>909230555</telefono>
-            <email>klcben9l@netscape.net</email>
-            <central>true</central>
-        </delegacion>
-        <delegacion id="2">
-            <ciudad>TORRE VAL DE SAN PEDRO</ciudad>
-            <direccion>VIA NUEVA, 14</direccion>
-            <telefono>965398565</telefono>
-            <email>v0nmb6vcs4@netscape.net</email>
-            <central>false</central>
-        </delegacion>
-        <delegacion id="3">
-            <ciudad>CUBILLO</ciudad>
-            <direccion>EDIFICIO CATALUNYA, 8</direccion>
-            <telefono>935660348</telefono>
-            <email>46fm725a@yahoo.com</email>
-            <central>false</central>
-        </delegacion>
-        <delegacion id="4">
-            <ciudad>ESPRONCEDA</ciudad>
-            <direccion>PLAZUELA MADRID, 91</direccion>
-            <telefono>921308109</telefono>
-            <email>eys5tmxfa@netscape.com</email>
-            <central>false</central>
-        </delegacion>
-    </delegaciones>
+	<delegaciones>
+		<delegacion id="1">
+			<ciudad>OLMEDILLO DE ROA</ciudad>
+			<direccion>CARRETERA CATALUNYA, 67</direccion>
+			<telefono>909230555</telefono>
+			<email>klcben9l@netscape.net</email>
+			<central>true</central>
+		</delegacion>
+		<delegacion id="2">
+			<ciudad>TORRE VAL DE SAN PEDRO</ciudad>
+			<direccion>VIA NUEVA, 14</direccion>
+			<telefono>965398565</telefono>
+			<email>v0nmb6vcs4@netscape.net</email>
+			<central>false</central>
+		</delegacion>
+		<delegacion id="3">
+			<ciudad>CUBILLO</ciudad>
+			<direccion>EDIFICIO CATALUNYA, 8</direccion>
+			<telefono>935660348</telefono>
+			<email>46fm725a@yahoo.com</email>
+			<central>false</central>
+		</delegacion>
+		<delegacion id="4">
+			<ciudad>ESPRONCEDA</ciudad>
+			<direccion>PLAZUELA MADRID, 91</direccion>
+			<telefono>921308109</telefono>
+			<email>eys5tmxfa@netscape.com</email>
+			<central>false</central>
+		</delegacion>
+	</delegaciones>
+	<proyectos>
+		<proyecto>
+			<nombre>Proyecto 1</nombre>
+			<pais>Galicia</pais>
+			<localizacion>Arbo</localizacion>
+			<lineAccion>1</lineAccion>
+			<subLineaAccion>1.1</subLineaAccion>
+			<fechaInicio>04/01/2021</fechaInicio>
+			<fechaFin>04/01/2021</fechaFin>
+			<socioLocal>Me</socioLocal>
+			<financiador>Aquel</financiador>
+			<financiacionAportada>200.000€</financiacionAportada>
+			<personalAsociado>
+				<personal>1</personal>
+			</personalAsociado>
+			<delegacion>1</delegacion>
+		</proyecto>
+		<proyecto>
+			<nombre>A</nombre>
+			<pais>E</pais>
+			<localizacion>A</localizacion>
+			<lineAccion>E</lineAccion>
+			<subLineaAccion>F</subLineaAccion>
+			<fechaInicio>04/01/2021</fechaInicio>
+			<fechaFin>04/01/2021</fechaFin>
+			<socioLocal>F</socioLocal>
+			<financiador>R</financiador>
+			<financiacionAportada>23.0236</financiacionAportada>
+			<personalAsociado>
+				<personal>1</personal>
+				<personal>2</personal>
+				<personal>3</personal>
+			</personalAsociado>
+			<delegacion>1</delegacion>
+		</proyecto>
+		<proyecto>
+			<nombre>SADF</nombre>
+			<pais>SDFG</pais>
+			<localizacion>ASDF</localizacion>
+			<lineAccion>ASDF</lineAccion>
+			<subLineaAccion>ASDF</subLineaAccion>
+			<fechaInicio>04/01/2021</fechaInicio>
+			<fechaFin>04/01/2021</fechaFin>
+			<socioLocal>ASDF</socioLocal>
+			<financiador>20.365€</financiador>
+			<financiacionAportada>3423</financiacionAportada>
+			<personalAsociado>
+				<personal>1</personal>
+				<personal>2</personal>
+				<personal>3</personal>
+			</personalAsociado>
+			<delegacion>1</delegacion>
+		</proyecto>
+	</proyectos>
 </db>

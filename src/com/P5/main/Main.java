@@ -3,11 +3,13 @@ package com.P5.main;
 import com.P5.DAO.DelegacionImpl;
 import com.P5.DAO.ProyectoImpl;
 import com.P5.entities.Delegacion;
+import com.P5.entities.Personal;
 import com.P5.entities.Proyecto;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -232,13 +234,24 @@ public class Main {
             String financiador = keyboard.nextLine();
             System.out.print("Financiacion Aportada: ");
             String financiacionAportada = keyboard.nextLine();
+
+            ArrayList<Personal> personalAsociado = new ArrayList<>();
+            String idPersonalStr = "";
+            do {
+                System.out.print("ID Personal Asociado: ");
+                idPersonalStr = keyboard.nextLine();
+                if (!idPersonalStr.equals("0")) {
+                    personalAsociado.add(new Personal(Integer.parseInt(idPersonalStr), "", "", ""));
+                }
+            } while (!idPersonalStr.equals("0"));
+
             System.out.print("ID de la delegacion asociada: ");
             String delegacionId = keyboard.nextLine();
 
             Delegacion delegacion = delegacionDao.readDelegacion(delegacionId);
             Date fechaInicioDate = new SimpleDateFormat("DD/MM/YYYY").parse(fechaInicio);
             Date fechaFinDate = new SimpleDateFormat("DD/MM/YYYY").parse(fechaFin);
-            Proyecto proyecto = new Proyecto(nombre, pais, localizacion, lineaAccion, subLineaAccion, fechaInicioDate, fechaFinDate, socioLocal, financiador, financiacionAportada, new ArrayList<>(), delegacion);
+            Proyecto proyecto = new Proyecto(nombre, pais, localizacion, lineaAccion, subLineaAccion, fechaInicioDate, fechaFinDate, socioLocal, financiador, financiacionAportada, personalAsociado, delegacion);
             proyectoDao.createProyecto(proyecto);
 
             System.out.println("Delegación creada con éxito.\n");
