@@ -56,6 +56,9 @@ public class Main {
                 case 8:
                     leerProyecto();
                     break;
+                case 9:
+                    actualizarProyecto();
+                    break;
                 default:
                     break;
             }
@@ -72,6 +75,7 @@ public class Main {
         System.out.println("[6] Listar proyectos de una delegacion.");
         System.out.println("[7] Anhadir proyecto.");
         System.out.println("[8] Leer proyecto.");
+        System.out.println("[9] Actualizar proyecto.");
         System.out.println("[0] Salir.");
     }
 
@@ -251,7 +255,7 @@ public class Main {
             String nombre = keyboard.nextLine();
             System.out.print("Pais: ");
             String pais = keyboard.nextLine();
-            System.out.print("Lozalizacion: ");
+            System.out.print("Localizacion: ");
             String localizacion = keyboard.nextLine();
             System.out.print("Linea de accion: ");
             String lineaAccion = keyboard.nextLine();
@@ -308,6 +312,76 @@ public class Main {
                 System.out.println("El nombre del proyecto no existe.");
             }
         } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void actualizarProyecto() {
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            ProyectoImpl proyectoDao = new ProyectoImpl();
+            System.out.println("---- ACTUALIZAR PROYECTO ----");
+
+            System.out.print("Nombre del Proyecto: ");
+            String nombreProyecto = keyboard.nextLine();
+            Proyecto proyecto = proyectoDao.readProyecto(nombreProyecto);
+            if (proyecto == null) {
+                System.out.println("El proyecto no existe.");
+            } else {
+                System.out.format("Pais [%s]: ", proyecto.getPais());
+                String pais = keyboard.nextLine();
+                System.out.format("Localizacion [%s]: ", proyecto.getLocalizacion());
+                String localizacion = keyboard.nextLine();
+                System.out.format("Linea de accion [%s]: ", proyecto.getLineaAccion());
+                String lineaAccion = keyboard.nextLine();
+                System.out.format("Sublinea de accion [%s]: ", proyecto.getSubLineaAccion());
+                String subLineaAccion = keyboard.nextLine();
+                System.out.format("Fecha de inicio [DD/MM/YYY] [%s]: ", proyecto.getFechaInicio());
+                String fechaInicio = keyboard.nextLine();
+                System.out.format("Fecha de finalizacion [DD/MM/YYY] [%s]: ", proyecto.getFechaFin());
+                String fechaFin = keyboard.nextLine();
+                System.out.format("Socio local [%s]: ", proyecto.getSocioLocal());
+                String socioLocal = keyboard.nextLine();
+                System.out.format("Financiador [%s]: ", proyecto.getFinanciador());
+                String financiador = keyboard.nextLine();
+                System.out.format("Financiacion Aportada [%s]: ", proyecto.getFinanciacionAportada());
+                String financiacionAportada = keyboard.nextLine();
+
+
+                if (pais.length() > 0) {
+                    proyecto.setPais(pais);
+                }
+                if (localizacion.length() > 0) {
+                    proyecto.setLocalizacion(localizacion);
+                }
+                if (lineaAccion.length() > 0) {
+                    proyecto.setLineaAccion(lineaAccion);
+                }
+                if (subLineaAccion.length() > 0) {
+                    proyecto.setSubLineaAccion(subLineaAccion);
+                }
+                if (fechaInicio.length() > 0) {
+                    Date fechaInicioDate = new SimpleDateFormat("DD/MM/YYYY").parse(fechaInicio);
+                    proyecto.setFechaInicio(fechaInicioDate);
+                }
+                if (fechaInicio.length() > 0) {
+                    Date fechaFinDate = new SimpleDateFormat("DD/MM/YYYY").parse(fechaFin);
+                    proyecto.setFechaInicio(fechaFinDate);
+                }
+                if (socioLocal.length() > 0) {
+                    proyecto.setSocioLocal(socioLocal);
+                }
+                if (financiador.length() > 0) {
+                    proyecto.setFinanciador(financiador);
+                }
+                if (financiacionAportada.length() > 0) {
+                    proyecto.setFinanciacionAportada(financiacionAportada);
+                }
+
+                proyectoDao.updateProyecto(proyecto);
+                System.out.println("Proyecto actualizado con éxito.\n");
+            }
+        } catch (SAXException | ParserConfigurationException | IOException | ParseException e) {
             System.out.println(e.getMessage());
         }
     }

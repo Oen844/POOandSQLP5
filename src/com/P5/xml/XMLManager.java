@@ -153,9 +153,14 @@ public class XMLManager {
     public void eliminarElemento(String parentTagName, String elementTagName, String elementId) throws TransformerException {
         NodeList nodeList = this.doc.getElementsByTagName(elementTagName);
         for (int i = 0; i < nodeList.getLength(); i++) {
-            Element delegacionXML = (Element) nodeList.item(i);
-            if (delegacionXML.getAttribute("id").equals(elementId)) {
-                this.doc.getElementsByTagName(parentTagName).item(0).removeChild(delegacionXML);
+            Element nodeXml = (Element) nodeList.item(i);
+            if (nodeXml.getAttribute("id") != null && nodeXml.getAttribute("id").equals(elementId)) {
+                this.doc.getElementsByTagName(parentTagName).item(0).removeChild(nodeXml);
+            } else {
+                Node nombreNodeXml = this.recuperarElementoEnElemento("nombre", nodeXml);
+                if (nombreNodeXml.getTextContent().equals(elementId)) {
+                    this.doc.getElementsByTagName(parentTagName).item(0).removeChild(nodeXml);
+                }
             }
         }
 
