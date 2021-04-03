@@ -72,6 +72,10 @@ public class Main {
         System.out.println("[6] Listar proyectos de una delegacion.");
         System.out.println("[7] Anhadir proyecto.");
         System.out.println("[8] Leer proyecto.");
+        System.out.println("[9] Anhadir Personal.");
+        System.out.println("[10] Buscar Personal.");
+        System.out.println("[11] Eliminar Personal.");
+        System.out.println("[11] Actualizar Personal.");
         System.out.println("[0] Salir.");
     }
 
@@ -88,6 +92,17 @@ public class Main {
             System.out.println(e.getMessage());
         }
         System.out.println("\n");
+    }
+
+    public static void crearPersonal(){
+        try{
+            Scanner keyboard = new Scanner(System.in);
+
+
+        }catch (SAXException | ParserConfigurationException | IOException e ){
+            System.out.println(e.getMessage());
+        }
+
     }
 
     public static void crearDelegacion() {

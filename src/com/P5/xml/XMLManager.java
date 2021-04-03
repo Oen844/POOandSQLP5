@@ -1,6 +1,7 @@
 package com.P5.xml;
 
 import com.P5.entities.Delegacion;
+import com.P5.entities.Personal;
 import com.P5.entities.Proyecto;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -45,6 +46,13 @@ public class XMLManager {
 
         return null;
     }
+
+    public Element crearPersonal(Personal personal){
+        Element personalXML = this.doc.createElement("Personal");
+        personalXML.setAttribute("id", personal.getIdPersona());
+
+    }
+
 
     public Element crearElementoDelegacion(Delegacion delegacion) {
         Element delegacionXML = this.doc.createElement("delegacion");
