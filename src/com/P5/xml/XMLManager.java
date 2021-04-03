@@ -47,9 +47,26 @@ public class XMLManager {
         return null;
     }
 
-    public Element crearPersonal(Personal personal){
-        Element personalXML = this.doc.createElement("Personal");
-        personalXML.setAttribute("id", personal.getIdPersona());
+    public Element crearElementoPersonal(Personal personal){
+        Element personalXML = this.doc.createElement("personal");
+
+        //personalXML.setAttribute("id", personal.getIdPersona());
+
+        personalXML.setAttribute("id",String.valueOf(personal.getIdPersona()));
+
+        Element nombre = this.doc.createElement("nombre");
+        nombre.appendChild(this.doc.createTextNode(personal.getNombre()));
+        personalXML.appendChild(nombre);
+
+        Element nif = this.doc.createElement("nif");
+        nif.appendChild(this.doc.createTextNode(personal.getNif()));
+        personalXML.appendChild(nif);
+
+        Element direccion = this.doc.createElement("direccion");
+        direccion.appendChild(this.doc.createTextNode(personal.getDireccion()));
+        personalXML.appendChild(direccion);
+
+        return personalXML;
 
     }
 

@@ -17,7 +17,7 @@ public class PersonalDTO {
 
     public static Personal toEntity(Node personalNode) throws ParseException, ParserConfigurationException, SAXException, IOException {
         Element personalXml = (Element) personalNode;
-        Integer id = Integer.parseInt(personalXML.getAttribute("id"));
+        int id = Integer.parseInt(personalXml.getAttribute("id"));
         String nombre = personalXml.getElementsByTagName("nombre").item(0).getTextContent();
         String nif = personalXml.getElementsByTagName("nif").item(0).getTextContent();
         String direccion = personalXml.getElementsByTagName("direccion").item(0).getTextContent();

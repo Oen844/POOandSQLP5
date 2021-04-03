@@ -1,17 +1,15 @@
 package com.P5.DAO;
 
 import com.P5.DAO.interfaces.IPersonal;
-import com.P5.DTO.ProyectoDTO;
 import com.P5.entities.Personal;
 import com.P5.entities.Proyecto;
 import com.P5.xml.XMLManager;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,30 +20,15 @@ public class PersonalImpl implements IPersonal {
     public PersonalImpl() throws IOException, SAXException, ParserConfigurationException {
     }
 
+
+
     @Override
-    public List<Personal> createPersonal() {
-        List<Personal> PersonalList = new ArrayList<>();
-        try {
-            NodeList personales = this.xmlFactory.recuperarElemento("personal");
-            for (int i = 0; i < personales.getLength(); i++) {
-                Node nNode = personales.item(i);
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Node delegacionProyecto = this.xmlFactory.recuperarElementoEnElemento("delegacion", nNode);
-                    if (delegacionProyecto.getTextContent().equals(delegacionId)) {
-                        proyectosList.add(ProyectoDTO.toEntity(nNode));
-                    }
-                }
-            }
-        } catch (ParserConfigurationException | SAXException | ParseException | IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-
+    public List<Personal> findPersona(Integer idPersona) {
         return null;
     }
 
     @Override
-    public Personal readPersonal(int idPersona) {
+    public Personal readPersonal(Integer idPersona) {
 
 
         return null;
@@ -60,4 +43,15 @@ public class PersonalImpl implements IPersonal {
     public void deletePersonal(Personal persona) {
 
     }
+
+    public void createPersonal(Personal persona) {
+        try {
+            Element personalXml = this.xmlFactory.crearElementoPersonal(persona);
+            this.xmlFactory.anhadirElemento("personal", personalXml);
+        } catch (TransformerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 }

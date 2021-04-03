@@ -1,6 +1,7 @@
 package com.P5.main;
 
 import com.P5.DAO.DelegacionImpl;
+import com.P5.DAO.PersonalImpl;
 import com.P5.DAO.ProyectoImpl;
 import com.P5.entities.Delegacion;
 import com.P5.entities.Personal;
@@ -94,10 +95,23 @@ public class Main {
         System.out.println("\n");
     }
 
-    public static void crearPersonal(){
+    public static void crearPersonales(){
         try{
             Scanner keyboard = new Scanner(System.in);
+            PersonalImpl personalDao = new PersonalImpl();
+            System.out.println("---- CREAR PERSONAL ----");
+            System.out.print("ID: ");
+            String idStr = keyboard.nextLine();
+            System.out.print("Nombre: ");
+            String nombre = keyboard.nextLine();
+            System.out.print("NIF: ");
+            String nif = keyboard.nextLine();
+            System.out.print("Direccion: ");
+            String direccion = keyboard.nextLine();
 
+            Integer id = Integer.parseInt(idStr);
+            Personal personal = new Personal(id, nombre, nif, direccion);
+            personalDao.createPersonal(personal);
 
         }catch (SAXException | ParserConfigurationException | IOException e ){
             System.out.println(e.getMessage());

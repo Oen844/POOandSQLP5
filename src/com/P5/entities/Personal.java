@@ -1,12 +1,12 @@
 package com.P5.entities;
 
 public class Personal {
-    private int idPersona;
+    private Integer idPersona;
     private String nombre;
     private String nif;
     private String direccion;
 
-    public Personal(int idPersona, String nombre, String nif, String direccion) {
+    public Personal(Integer idPersona, String nombre, String nif, String direccion) {
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.nif = nif;
@@ -17,7 +17,7 @@ public class Personal {
         return idPersona;
     }
 
-    public void setIdPersona(int idPersona) {
+    public void setIdPersona(Integer idPersona) {
         this.idPersona = idPersona;
     }
 
