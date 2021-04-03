@@ -53,6 +53,9 @@ public class Main {
                 case 7:
                     crearProyecto();
                     break;
+                case 8:
+                    leerProyecto();
+                    break;
                 default:
                     break;
             }
@@ -68,6 +71,7 @@ public class Main {
         System.out.println("[5] Eliminar delegacion.");
         System.out.println("[6] Listar proyectos de una delegacion.");
         System.out.println("[7] Anhadir proyecto.");
+        System.out.println("[8] Leer proyecto.");
         System.out.println("[0] Salir.");
     }
 
@@ -219,12 +223,17 @@ public class Main {
             System.out.print("ID Delegacion: ");
             String idStr = keyboard.nextLine();
 
-            List<Proyecto> proyectos = proyectoDao.findProyectosDelegacion(idStr);
             System.out.println("---- LISTA DE PROYECTOS DE LA DELEGACION ----");
-            for (Proyecto proyecto : proyectos) {
-                System.out.println(proyecto.toString());
+            List<Proyecto> proyectos = proyectoDao.findProyectosDelegacion(idStr);
+
+            if (proyectos.size() > 0) {
+                for (Proyecto proyecto : proyectos) {
+                    System.out.println(proyecto.toString());
+                }
+                System.out.println("Items: " + proyectos.size());
+            } else {
+                System.out.println("La delegacion especificada no tiene proyectos.");
             }
-            System.out.println("Items: " + proyectos.size());
         } catch (SAXException | ParserConfigurationException | IOException e) {
             System.out.println(e.getMessage());
         }
@@ -280,6 +289,25 @@ public class Main {
 
             System.out.println("Delegación creada con éxito.\n");
         } catch (SAXException | ParserConfigurationException | IOException | ParseException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void leerProyecto() {
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            ProyectoImpl proyectoDao = new ProyectoImpl();
+            System.out.println("---- LEER PROYECTO ----");
+
+            System.out.print("Nombre: ");
+            String nombre = keyboard.nextLine();
+            Proyecto proyecto = proyectoDao.readProyecto(nombre);
+            if (proyecto != null) {
+                System.out.println(proyecto);
+            } else {
+                System.out.println("El nombre del proyecto no existe.");
+            }
+        } catch (SAXException | ParserConfigurationException | IOException e) {
             System.out.println(e.getMessage());
         }
     }

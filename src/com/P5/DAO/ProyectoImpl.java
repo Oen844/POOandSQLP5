@@ -1,9 +1,7 @@
 package com.P5.DAO;
 
 import com.P5.DAO.interfaces.IProyecto;
-import com.P5.DTO.DelegacionDTO;
 import com.P5.DTO.ProyectoDTO;
-import com.P5.entities.Delegacion;
 import com.P5.entities.Proyecto;
 import com.P5.xml.XMLManager;
 import org.w3c.dom.Element;
@@ -48,7 +46,20 @@ public class ProyectoImpl implements IProyecto {
     }
 
     @Override
-    public Proyecto readProyecto(String id) {
+    public Proyecto readProyecto(String nombre) {
+        try {
+            NodeList proyectos = this.xmlFactory.recuperarElemento("proyecto");
+            for (int i = 0; i < proyectos.getLength(); i++) {
+                Element delegacionXML = (Element) proyectos.item(i);
+                Node delegacionProyecto = this.xmlFactory.recuperarElementoEnElemento("nombre", delegacionXML);
+                if (delegacionProyecto.getTextContent().equals(nombre)) {
+                    return ProyectoDTO.toEntity(delegacionXML);
+                }
+            }
+        } catch (ParserConfigurationException | SAXException | ParseException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+
         return null;
     }
 

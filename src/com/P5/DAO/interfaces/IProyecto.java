@@ -11,7 +11,7 @@ import java.util.List;
 public interface IProyecto {
     public List<Proyecto> findProyectosDelegacion(String delgacionId) throws ParserConfigurationException, SAXException, ParseException, IOException;
 
-    public Proyecto readProyecto(String id);
+    public Proyecto readProyecto(String id) throws ParserConfigurationException, SAXException, ParseException, IOException;
 
     public void createProyecto(Proyecto proyecto);
 
