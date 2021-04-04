@@ -67,14 +67,6 @@
 		</proyecto>
 	</proyectos>
 	<listaPersonal>
-		<personal id="5">
-			<nombre>Nombre</nombre>
-			<nif>1231231</nif>
-			<direccion>Dir</direccion>
-			<tipoPersonal>Empleado</tipoPersonal>
-			<salario>1324.36</salario>
-			<delegacion>1</delegacion>
-		</personal>
 		<personal id="1">
 			<nombre>Manolo Fernández</nombre>
 			<nif>32165487A</nif>

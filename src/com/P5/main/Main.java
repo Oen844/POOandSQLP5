@@ -4,7 +4,6 @@ import com.P5.DAO.DelegacionImpl;
 import com.P5.DAO.PersonalImpl;
 import com.P5.DAO.ProyectoImpl;
 import com.P5.entities.*;
-import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -73,6 +72,9 @@ public class Main {
                 case 14:
                     actualizarPersonal();
                     break;
+                case 15:
+                    eliminarPersonal();
+                    break;
                 default:
                     break;
             }
@@ -95,6 +97,7 @@ public class Main {
         System.out.println("[12] Alta personal.");
         System.out.println("[13] Leer personal.");
         System.out.println("[14] Actualizar personal.");
+        System.out.println("[15] Eliminar personal.");
         System.out.println("[0] Salir.");
     }
 
@@ -624,6 +627,27 @@ public class Main {
 
                 personalDao.updatePersonal(personal);
                 System.out.println("Personal actualizado con éxito.\n");
+            }
+        } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void eliminarPersonal() {
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            PersonalImpl personalDao = new PersonalImpl();
+            System.out.println("---- ELIMINAR PERSONAL ----");
+
+            System.out.print("ID Personal: ");
+            String idStr = keyboard.nextLine();
+            int idPersonal = Integer.parseInt(idStr);
+            Personal personal = personalDao.readPersonal(idPersonal);
+            if (personal == null) {
+                System.out.println("El ID del personal no existe.");
+            } else {
+                personalDao.deletePersonal(personal.getIdPersona());
+                System.out.println("Personal eliminado con éxito.\n");
             }
         } catch (SAXException | ParserConfigurationException | IOException e) {
             System.out.println(e.getMessage());
