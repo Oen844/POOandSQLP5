@@ -125,7 +125,7 @@ public class XMLManager {
 
         Element personalAsociado = this.doc.createElement("personalAsociado");
         for (int i = 0; i < proyecto.getPersonalAsociado().size(); i++) {
-            Element personalId = this.doc.createElement("personal");
+            Element personalId = this.doc.createElement("personalId");
             personalId.appendChild(this.doc.createTextNode(Integer.toString(proyecto.getPersonalAsociado().get(i).getIdPersona())));
             personalAsociado.appendChild(personalId);
         }

@@ -43,7 +43,7 @@
 			<financiador>Aquel</financiador>
 			<financiacionAportada>200.000€</financiacionAportada>
 			<personalAsociado>
-				<personal>1</personal>
+				<personalId>1</personalId>
 			</personalAsociado>
 			<delegacion>1</delegacion>
 		</proyecto>
@@ -59,54 +59,54 @@
 			<financiador>Aquel</financiador>
 			<financiacionAportada>200.000€</financiacionAportada>
 			<personalAsociado>
-				<personal>1</personal>
-				<personal>2</personal>
-				<personal>3</personal>
+				<personalId>1</personalId>
+				<personalId>2</personalId>
+				<personalId>3</personalId>
 			</personalAsociado>
 			<delegacion>1</delegacion>
 		</proyecto>
 	</proyectos>
 	<listaPersonal>
-		<personal id="1">
-			<nombre>afasdfasdf</nombre>
-			<nif>asdfasdf</nif>
-			<direccion>asdfasdf</direccion>
-			<tipoPersonal>Empleado</tipoPersonal>
-			<salario>13213.23</salario>
-			<delegacion>1</delegacion>
-		</personal>
-		<personal id="2">
-			<nombre>asdfasdf</nombre>
-			<nif>asdfasdf</nif>
-			<direccion>asdfasdf</direccion>
-			<tipoPersonal>Colaborador</tipoPersonal>
-			<areaColaboracion>asdfasdf</areaColaboracion>
-			<delegacion>1</delegacion>
-		</personal>
-		<personal id="3">
-			<nombre>asfasdf</nombre>
-			<nif>asdfadf</nif>
-			<direccion>asdfsadf</direccion>
-			<tipoPersonal>Voluntario_Nacional</tipoPersonal>
-			<tareaDesempena>asdfasdf</tareaDesempena>
-			<ciudad>asdf</ciudad>
-			<delegacion>1</delegacion>
-		</personal>
-		<personal id="4">
-			<nombre>asdfsa</nombre>
-			<nif>asfasdf</nif>
-			<direccion>asfdasdf</direccion>
-			<tipoPersonal>Voluntario_Internacional</tipoPersonal>
-			<tareaDesempena>asdfasdf</tareaDesempena>
-			<pais>asfsad</pais>
-			<delegacion>1</delegacion>
-		</personal>
 		<personal id="5">
 			<nombre>Nombre</nombre>
 			<nif>1231231</nif>
 			<direccion>Dir</direccion>
 			<tipoPersonal>Empleado</tipoPersonal>
 			<salario>1324.36</salario>
+			<delegacion>1</delegacion>
+		</personal>
+		<personal id="1">
+			<nombre>Manolo Fernández</nombre>
+			<nif>32165487A</nif>
+			<direccion>Calle Falsa, 123</direccion>
+			<tipoPersonal>Empleado</tipoPersonal>
+			<salario>1000.0</salario>
+			<delegacion>2</delegacion>
+		</personal>
+		<personal id="2">
+			<nombre>Rafael Domínguez</nombre>
+			<nif>798456A</nif>
+			<direccion>Calle de la Piruleta, 3</direccion>
+			<tipoPersonal>Colaborador</tipoPersonal>
+			<areaColaboracion>Comedor</areaColaboracion>
+			<delegacion>1</delegacion>
+		</personal>
+		<personal id="3">
+			<nombre>María Álvarez</nombre>
+			<nif>54266354A</nif>
+			<direccion>Av. Buenos Aires, 23</direccion>
+			<tipoPersonal>Voluntario_Nacional</tipoPersonal>
+			<tareaDesempena>Ropa</tareaDesempena>
+			<ciudad>Tenerife</ciudad>
+			<delegacion>1</delegacion>
+		</personal>
+		<personal id="4">
+			<nombre>Angela Nieto</nombre>
+			<nif>987654231A</nif>
+			<direccion>Av. Poblado, 9</direccion>
+			<tipoPersonal>Voluntario_Internacional</tipoPersonal>
+			<tareaDesempena>Oficinas</tareaDesempena>
+			<pais>Italia</pais>
 			<delegacion>1</delegacion>
 		</personal>
 	</listaPersonal>

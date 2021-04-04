@@ -4,6 +4,7 @@ import com.P5.DAO.DelegacionImpl;
 import com.P5.DAO.PersonalImpl;
 import com.P5.DAO.ProyectoImpl;
 import com.P5.entities.*;
+import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -68,6 +69,10 @@ public class Main {
                     break;
                 case 13:
                     leerPersonal();
+                    break;
+                case 14:
+                    actualizarPersonal();
+                    break;
                 default:
                     break;
             }
@@ -89,6 +94,7 @@ public class Main {
         System.out.println("[11] Listar personal.");
         System.out.println("[12] Alta personal.");
         System.out.println("[13] Leer personal.");
+        System.out.println("[14] Actualizar personal.");
         System.out.println("[0] Salir.");
     }
 
@@ -513,6 +519,111 @@ public class Main {
                 System.out.println(personal);
             } else {
                 System.out.println("El ID del personal no existe.");
+            }
+        } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void actualizarPersonal() {
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            PersonalImpl personalDao = new PersonalImpl();
+            System.out.println("---- ACTUALIZAR PERSONAL ----");
+
+            System.out.print("ID Personal: ");
+            String idStr = keyboard.nextLine();
+            int id = Integer.parseInt(idStr);
+            Personal personal = personalDao.readPersonal(id);
+            if (personal == null) {
+                System.out.println("El ID del personal no existe.");
+            } else {
+                System.out.format("Nombre [%s]: ", personal.getNombre());
+                String nombre = keyboard.nextLine();
+                System.out.format("NIF [%s]: ", personal.getNif());
+                String nif = keyboard.nextLine();
+                System.out.format("Direccion [%s]: ", personal.getDireccion());
+                String direccion = keyboard.nextLine();
+                System.out.format("ID Delegacion Asociada [%s]: ", personal.getDelegacion().getId());
+                String delegacionId = keyboard.nextLine();
+
+                if (nombre.length() > 0) {
+                    personal.setNombre(nombre);
+                }
+                if (nif.length() > 0) {
+                    personal.setNif(nif);
+                }
+                if (direccion.length() > 0) {
+                    personal.setDireccion(direccion);
+                }
+                if (delegacionId.length() > 0) {
+                    DelegacionImpl delegacionDao = new DelegacionImpl();
+                    personal.setDelegacion(delegacionDao.readDelegacion(delegacionId));
+                }
+
+                String[] tipoPersonalClassSplit = personal.getClass().getName().split("\\.");
+                String tipoPersonalClass = tipoPersonalClassSplit[tipoPersonalClassSplit.length - 1];
+
+                switch (tipoPersonalClass) {
+                    case "Empleado":
+                        Empleado empleado = (Empleado) personal;
+                        System.out.format("Salario [%s]: ", empleado.getSalario());
+                        String salarioStr = keyboard.nextLine();
+                        if (salarioStr.length() > 0) {
+                            float salario = Float.parseFloat(salarioStr);
+                            empleado.setSalario(salario);
+                        }
+
+                        personal = empleado;
+                        break;
+                    case "Colaborador":
+                        Colaborador colaborador = (Colaborador) personal;
+                        System.out.format("Area Colaboracion [%s]: ", colaborador.getAreaColaboracion());
+                        String areaColaboracion = keyboard.nextLine();
+                        if (areaColaboracion.length() > 0) {
+                            colaborador.setAreaColaboracion(areaColaboracion);
+                        }
+
+                        personal = colaborador;
+                        break;
+                    case "Voluntario_Nacional":
+                        Voluntario_Nacional voluntarioNacional = (Voluntario_Nacional) personal;
+                        System.out.format("Tarea Desempeñada [%s]: ", voluntarioNacional.getTareaDesepena());
+                        String tareaDesempenaVoluntarioNacional = keyboard.nextLine();
+
+                        System.out.format("Ciudad [%s]: ", voluntarioNacional.getCiudad());
+                        String ciudad = keyboard.nextLine();
+
+                        if (tareaDesempenaVoluntarioNacional.length() > 0) {
+                            voluntarioNacional.setTareaDesepena(tareaDesempenaVoluntarioNacional);
+                        }
+                        if (ciudad.length() > 0) {
+                            voluntarioNacional.setCiudad(ciudad);
+                        }
+
+                        personal = voluntarioNacional;
+                        break;
+                    case "Voluntario_Internacional":
+                        Voluntario_Internacional voluntarioInternacional = (Voluntario_Internacional) personal;
+                        System.out.format("Tarea Desempeñada [%s]: ", voluntarioInternacional.getTareaDesepena());
+                        String tareaDesempenaVoluntarioInternacional = keyboard.nextLine();
+
+                        System.out.format("Pais [%s]: ", voluntarioInternacional.getPais());
+                        String pais = keyboard.nextLine();
+
+                        if (tareaDesempenaVoluntarioInternacional.length() > 0) {
+                            voluntarioInternacional.setTareaDesepena(tareaDesempenaVoluntarioInternacional);
+                        }
+                        if (pais.length() > 0) {
+                            voluntarioInternacional.setPais(pais);
+                        }
+
+                        personal = voluntarioInternacional;
+                        break;
+                }
+
+                personalDao.updatePersonal(personal);
+                System.out.println("Personal actualizado con éxito.\n");
             }
         } catch (SAXException | ParserConfigurationException | IOException e) {
             System.out.println(e.getMessage());
