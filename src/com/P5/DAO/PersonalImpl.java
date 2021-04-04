@@ -13,6 +13,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +36,18 @@ public class PersonalImpl implements IPersonal {
         NodeList personales = this.xmlFactory.recuperarElemento("personal");
         for (int i = 0; i < personales.getLength(); i++) {
             Element personalXML = (Element) personales.item(i);
-            if (personalXML.getAttribute("id", equals(id))) {
-                return PersonalDTO.toEntity(personalXML);
+            if (personalXML.getAttribute("id").equals(id)){
+                try {
+                    return PersonalDTO.toEntity(personalXML);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                } catch (ParserConfigurationException e) {
+                    e.printStackTrace();
+                } catch (SAXException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
         }

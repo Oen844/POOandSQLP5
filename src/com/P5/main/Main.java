@@ -63,7 +63,7 @@ public class Main {
                 case 10:
                     buscarPersonal();
                     break;
-                case: 11
+                case 11:
                     //funcion
                 default:
                     break;

@@ -9,7 +9,9 @@ import java.util.List;
 public interface IPersonal {
     public List<Personal> findPersona(Integer idPersona);
 
-    public Personal readPersonal(Integer idPersona);
+
+
+    Personal readPersonal(String id);
 
     public void updatePersonal(Personal persona);
 
