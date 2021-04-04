@@ -1,6 +1,6 @@
 package com.P5.entities;
 
-public class Colaborador extends Personal{
+public class Colaborador extends Personal {
 
     private String areaColaboracion;
 
@@ -15,5 +15,13 @@ public class Colaborador extends Personal{
 
     public void setAreaColaboracion(String areaColaboracion) {
         this.areaColaboracion = areaColaboracion;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + '\'' +
+                ", Colaborador{" +
+                "areaColaboracion='" + areaColaboracion + '\'' +
+                '}';
     }
 }

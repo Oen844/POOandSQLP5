@@ -71,7 +71,7 @@
 			<nombre>afasdfasdf</nombre>
 			<nif>asdfasdf</nif>
 			<direccion>asdfasdf</direccion>
-			<tipoEmpleado>Empleado</tipoEmpleado>
+			<tipoPersonal>Empleado</tipoPersonal>
 			<salario>13213.23</salario>
 			<delegacion>1</delegacion>
 		</personal>
@@ -79,7 +79,7 @@
 			<nombre>asdfasdf</nombre>
 			<nif>asdfasdf</nif>
 			<direccion>asdfasdf</direccion>
-			<tipoEmpleado>Colaborador</tipoEmpleado>
+			<tipoPersonal>Colaborador</tipoPersonal>
 			<areaColaboracion>asdfasdf</areaColaboracion>
 			<delegacion>1</delegacion>
 		</personal>
@@ -87,7 +87,7 @@
 			<nombre>asfasdf</nombre>
 			<nif>asdfadf</nif>
 			<direccion>asdfsadf</direccion>
-			<tipoEmpleado>Voluntario_Nacional</tipoEmpleado>
+			<tipoPersonal>Voluntario_Nacional</tipoPersonal>
 			<tareaDesempena>asdfasdf</tareaDesempena>
 			<ciudad>asdf</ciudad>
 			<delegacion>1</delegacion>
@@ -96,7 +96,7 @@
 			<nombre>asdfsa</nombre>
 			<nif>asfasdf</nif>
 			<direccion>asfdasdf</direccion>
-			<tipoEmpleado>Voluntario_Internacional</tipoEmpleado>
+			<tipoPersonal>Voluntario_Internacional</tipoPersonal>
 			<tareaDesempena>asdfasdf</tareaDesempena>
 			<pais>asfsad</pais>
 			<delegacion>1</delegacion>
@@ -105,7 +105,7 @@
 			<nombre>Nombre</nombre>
 			<nif>1231231</nif>
 			<direccion>Dir</direccion>
-			<tipoEmpleado>Empleado</tipoEmpleado>
+			<tipoPersonal>Empleado</tipoPersonal>
 			<salario>1324.36</salario>
 			<delegacion>1</delegacion>
 		</personal>

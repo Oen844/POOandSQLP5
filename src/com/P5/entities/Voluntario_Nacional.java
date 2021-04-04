@@ -15,4 +15,12 @@ public class Voluntario_Nacional extends Voluntario {
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + '\'' +
+                ", Voluntario_Nacional{" +
+                "ciudad='" + ciudad + '\'' +
+                '}';
+    }
 }

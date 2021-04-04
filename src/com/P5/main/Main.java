@@ -61,8 +61,13 @@ public class Main {
                     eliminarProyecto();
                     break;
                 case 11:
+                    listarPersonal();
+                    break;
+                case 12:
                     altaPersonal();
                     break;
+                case 13:
+                    leerPersonal();
                 default:
                     break;
             }
@@ -81,7 +86,9 @@ public class Main {
         System.out.println("[8] Leer proyecto.");
         System.out.println("[9] Actualizar proyecto.");
         System.out.println("[10] Eliminar proyecto.");
-        System.out.println("[11] Alta personal.");
+        System.out.println("[11] Listar personal.");
+        System.out.println("[12] Alta personal.");
+        System.out.println("[13] Leer personal.");
         System.out.println("[0] Salir.");
     }
 
@@ -412,6 +419,31 @@ public class Main {
         }
     }
 
+    private static void listarPersonal() {
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            PersonalImpl personalDao = new PersonalImpl();
+
+            System.out.print("ID Delegacion: ");
+            String idStr = keyboard.nextLine();
+
+            System.out.println("---- LISTA DE PERSONAL DE LA DELEGACION ----");
+            List<Personal> personal = personalDao.findPersonalDelegacion(idStr);
+
+            if (personal.size() > 0) {
+                for (Personal persona : personal) {
+                    System.out.println(persona.toString());
+                }
+                System.out.println("Items: " + personal.size());
+            } else {
+                System.out.println("La delegacion especificada no tiene proyectos.");
+            }
+        } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("\n");
+    }
+
     private static void altaPersonal() {
         try {
             Scanner keyboard = new Scanner(System.in);
@@ -431,27 +463,27 @@ public class Main {
             String delegacionId = keyboard.nextLine();
             System.out.print("Tipo Empleado [1. Empleado, 2. Colaborador, 3. Voluntario Nacional, 4. Voluntario Internacional]: ");
             String tipoEmpleadoStr = keyboard.nextLine();
-            int tipoEmpleado = Integer.parseInt(tipoEmpleadoStr);
+            int tipoPersonal = Integer.parseInt(tipoEmpleadoStr);
 
             int id = Integer.parseInt(idStr);
             Delegacion delegacion = delegacionDao.readDelegacion(delegacionId);
             Personal personal = new Personal(id, nombre, nif, direccion, delegacion);
             String tareaDesempena;
-            if (tipoEmpleado == 1) {
+            if (tipoPersonal == 1) {
                 System.out.print("Salario: ");
                 String salario = keyboard.nextLine();
                 personal = new Empleado(id, nombre, nif, direccion, delegacion, Float.parseFloat(salario));
-            } else if (tipoEmpleado == 2) {
+            } else if (tipoPersonal == 2) {
                 System.out.print("Area Colaboracion: ");
                 String areaColaboracion = keyboard.nextLine();
                 personal = new Colaborador(id, nombre, nif, direccion, delegacion, areaColaboracion);
-            } else if (tipoEmpleado == 3) {
+            } else if (tipoPersonal == 3) {
                 System.out.print("Tarea desempeña: ");
                 tareaDesempena = keyboard.nextLine();
                 System.out.print("Ciudad: ");
                 String ciudad = keyboard.nextLine();
                 personal = new Voluntario_Nacional(id, nombre, nif, direccion, delegacion, tareaDesempena, "Nacional", ciudad);
-            } else if (tipoEmpleado == 4) {
+            } else if (tipoPersonal == 4) {
                 System.out.print("Tarea desempeña: ");
                 tareaDesempena = keyboard.nextLine();
                 System.out.print("Pais: ");
@@ -462,6 +494,26 @@ public class Main {
             personalDao.createPersonal(personal);
 
             System.out.println("Personal creado con éxito.\n");
+        } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void leerPersonal() {
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            PersonalImpl personalDao = new PersonalImpl();
+            System.out.println("---- LEER PERSONAL ----");
+
+            System.out.print("ID Personal: ");
+            String personalIdStr = keyboard.nextLine();
+            int personalId = Integer.parseInt(personalIdStr);
+            Personal personal = personalDao.readPersonal(personalId);
+            if (personal != null) {
+                System.out.println(personal);
+            } else {
+                System.out.println("El ID del personal no existe.");
+            }
         } catch (SAXException | ParserConfigurationException | IOException e) {
             System.out.println(e.getMessage());
         }

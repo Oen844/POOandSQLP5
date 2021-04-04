@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IPersonal {
 
-    public List<Personal> findPersonalDelegacion();
+    public List<Personal> findPersonalDelegacion(String delegacionId);
 
     public void createPersonal(Personal personal);
 

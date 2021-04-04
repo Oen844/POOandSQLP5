@@ -15,4 +15,12 @@ public class Voluntario_Internacional extends Voluntario {
     public void setPais(String pais) {
         this.pais = pais;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + '\'' +
+                ", Voluntario_Internacional{" +
+                "pais='" + pais + '\'' +
+                '}';
+    }
 }

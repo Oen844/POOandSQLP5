@@ -25,4 +25,13 @@ public class Voluntario extends Personal {
     public void setTipoVoluntario(String tipoVoluntario) {
         this.tipoVoluntario = tipoVoluntario;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + '\'' +
+                ", Voluntario{" +
+                "tareaDesepena='" + tareaDesepena + '\'' +
+                ", tipoVoluntario='" + tipoVoluntario + '\'' +
+                '}';
+    }
 }

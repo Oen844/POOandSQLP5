@@ -158,7 +158,7 @@ public class XMLManager {
         String[] tipoPersonalClassSplit = personal.getClass().getName().split("\\.");
         String tipoPersonalClass = tipoPersonalClassSplit[tipoPersonalClassSplit.length - 1];
 
-        Element tipoPersonal = this.doc.createElement("tipoEmpleado");
+        Element tipoPersonal = this.doc.createElement("tipoPersonal");
         tipoPersonal.appendChild(this.doc.createTextNode(tipoPersonalClass));
         personalXml.appendChild(tipoPersonal);
 

@@ -16,4 +16,12 @@ public class Empleado extends Personal {
     public void setSalario(float salario) {
         this.salario = salario;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + '\'' +
+                ", Empleado{" +
+                "salario=" + salario +
+                '}';
+    }
 }
