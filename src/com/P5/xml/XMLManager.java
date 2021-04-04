@@ -1,7 +1,6 @@
 package com.P5.xml;
 
-import com.P5.entities.Delegacion;
-import com.P5.entities.Proyecto;
+import com.P5.entities.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -137,6 +136,68 @@ public class XMLManager {
         proyectoXML.appendChild(delegacion);
 
         return proyectoXML;
+    }
+
+    public Element crearElementoPersonal(Personal personal) {
+        Element personalXml = this.doc.createElement("personal");
+
+        personalXml.setAttribute("id", Integer.toString(personal.getIdPersona()));
+
+        Element nombre = this.doc.createElement("nombre");
+        nombre.appendChild(this.doc.createTextNode(personal.getNombre()));
+        personalXml.appendChild(nombre);
+
+        Element nif = this.doc.createElement("nif");
+        nif.appendChild(this.doc.createTextNode(personal.getNif()));
+        personalXml.appendChild(nif);
+
+        Element direccion = this.doc.createElement("direccion");
+        direccion.appendChild(this.doc.createTextNode(personal.getDireccion()));
+        personalXml.appendChild(direccion);
+
+        String[] tipoPersonalClassSplit = personal.getClass().getName().split("\\.");
+        String tipoPersonalClass = tipoPersonalClassSplit[tipoPersonalClassSplit.length - 1];
+
+        Element tipoPersonal = this.doc.createElement("tipoEmpleado");
+        tipoPersonal.appendChild(this.doc.createTextNode(tipoPersonalClass));
+        personalXml.appendChild(tipoPersonal);
+
+        switch (tipoPersonalClass) {
+            case "Empleado":
+                Element salario = this.doc.createElement("salario");
+                salario.appendChild(this.doc.createTextNode(Float.toString(((Empleado) personal).getSalario())));
+                personalXml.appendChild(salario);
+                break;
+            case "Colaborador":
+                Element areaColaboracion = this.doc.createElement("areaColaboracion");
+                areaColaboracion.appendChild(this.doc.createTextNode(((Colaborador) personal).getAreaColaboracion()));
+                personalXml.appendChild(areaColaboracion);
+                break;
+            case "Voluntario_Nacional":
+                Element tareaDesempenaVoluntarioNacional = this.doc.createElement("tareaDesempena");
+                tareaDesempenaVoluntarioNacional.appendChild(this.doc.createTextNode(((Voluntario_Nacional) personal).getTareaDesepena()));
+                personalXml.appendChild(tareaDesempenaVoluntarioNacional);
+
+                Element ciudad = this.doc.createElement("ciudad");
+                ciudad.appendChild(this.doc.createTextNode(((Voluntario_Nacional) personal).getCiudad()));
+                personalXml.appendChild(ciudad);
+                break;
+            case "Voluntario_Internacional":
+                Element tareaDesempenaVoluntarioInternacional = this.doc.createElement("tareaDesempena");
+                tareaDesempenaVoluntarioInternacional.appendChild(this.doc.createTextNode(((Voluntario_Internacional) personal).getTareaDesepena()));
+                personalXml.appendChild(tareaDesempenaVoluntarioInternacional);
+
+                Element pais = this.doc.createElement("pais");
+                pais.appendChild(this.doc.createTextNode(((Voluntario_Internacional) personal).getPais()));
+                personalXml.appendChild(pais);
+                break;
+        }
+
+        Element delegacion = this.doc.createElement("delegacion");
+        delegacion.appendChild(this.doc.createTextNode(Integer.toString(personal.getDelegacion().getId())));
+        personalXml.appendChild(delegacion);
+
+        return personalXml;
     }
 
     public void anhadirElemento(String parentName, Element element) throws TransformerException {

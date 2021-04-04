@@ -4,8 +4,8 @@ public class Empleado extends Personal {
 
     private float salario;
 
-    public Empleado(int idPersona, String nombre, String dni, String direccion, float salario) {
-        super(idPersona, nombre, dni, direccion);
+    public Empleado(int idPersona, String nombre, String dni, String direccion, Delegacion delegacion, float salario) {
+        super(idPersona, nombre, dni, direccion, delegacion);
         this.salario = salario;
     }
 

@@ -35,7 +35,7 @@ public class ProyectoDTO {
         for (int i = 0; i < personalAsociadoXml.getLength(); i++) {
             Element personalXml = (Element) proyectoNode;
             String personalId = personalXml.getElementsByTagName("personal").item(0).getTextContent();
-            personalAsociado.add(new Personal(Integer.parseInt(personalId), "", "", ""));
+            personalAsociado.add(new Personal(Integer.parseInt(personalId), "", "", "", null));
         }
 
         String delegacionId = proyectoXml.getElementsByTagName("delegacion").item(0).getTextContent();

@@ -6,11 +6,14 @@ import com.P5.entities.Personal;
 import java.util.List;
 
 public interface IPersonal {
-    public List<Personal> createPersonal();
 
-    public Personal readPersonal(int idPersona);
+    public List<Personal> findPersonalDelegacion();
 
-    public void updatePersonal(Personal persona);
+    public void createPersonal(Personal personal);
 
-    public void deletePersonal(Personal persona);
+    public Personal readPersonal(int idPersonal);
+
+    public Personal updatePersonal(Personal persona);
+
+    public void deletePersonal(int idPersonal);
 }

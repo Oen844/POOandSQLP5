@@ -4,8 +4,8 @@ public class Colaborador extends Personal{
 
     private String areaColaboracion;
 
-    public Colaborador(int idPersona, String nombre, String nif, String direccion, String areaColaboracion) {
-        super(idPersona, nombre, nif, direccion);
+    public Colaborador(int idPersona, String nombre, String nif, String direccion, Delegacion delegacion, String areaColaboracion) {
+        super(idPersona, nombre, nif, direccion, delegacion);
         this.areaColaboracion = areaColaboracion;
     }
 

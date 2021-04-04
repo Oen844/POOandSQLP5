@@ -5,12 +5,14 @@ public class Personal {
     private String nombre;
     private String nif;
     private String direccion;
+    private Delegacion delegacion;
 
-    public Personal(int idPersona, String nombre, String nif, String direccion) {
+    public Personal(int idPersona, String nombre, String nif, String direccion, Delegacion delegacion) {
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.nif = nif;
         this.direccion = direccion;
+        this.delegacion = delegacion;
     }
 
     public int getIdPersona() {
@@ -45,6 +47,14 @@ public class Personal {
         this.direccion = direccion;
     }
 
+    public Delegacion getDelegacion() {
+        return delegacion;
+    }
+
+    public void setDelegacion(Delegacion delegacion) {
+        this.delegacion = delegacion;
+    }
+
     @Override
     public String toString() {
         return "Personal{" +
@@ -52,6 +62,7 @@ public class Personal {
                 ", nombre='" + nombre + '\'' +
                 ", nif='" + nif + '\'' +
                 ", direccion='" + direccion + '\'' +
+                ", delegacion=" + delegacion +
                 '}';
     }
 }

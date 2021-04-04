@@ -1,11 +1,11 @@
 package com.P5.entities;
 
-public class Voluntario extends Personal{
+public class Voluntario extends Personal {
     private String tareaDesepena;
     private String tipoVoluntario;
 
-    public Voluntario(int idPersona, String nombre, String nif, String direccion, String tareaDesepena, String tipoVoluntario) {
-        super(idPersona, nombre, nif, direccion);
+    public Voluntario(int idPersona, String nombre, String nif, String direccion, Delegacion delegacion, String tareaDesepena, String tipoVoluntario) {
+        super(idPersona, nombre, nif, direccion, delegacion);
         this.tareaDesepena = tareaDesepena;
         this.tipoVoluntario = tipoVoluntario;
     }

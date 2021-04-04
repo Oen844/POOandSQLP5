@@ -1,15 +1,13 @@
 package com.P5.main;
 
 import com.P5.DAO.DelegacionImpl;
+import com.P5.DAO.PersonalImpl;
 import com.P5.DAO.ProyectoImpl;
-import com.P5.entities.Delegacion;
-import com.P5.entities.Personal;
-import com.P5.entities.Proyecto;
+import com.P5.entities.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -62,6 +60,9 @@ public class Main {
                 case 10:
                     eliminarProyecto();
                     break;
+                case 11:
+                    altaPersonal();
+                    break;
                 default:
                     break;
             }
@@ -80,10 +81,11 @@ public class Main {
         System.out.println("[8] Leer proyecto.");
         System.out.println("[9] Actualizar proyecto.");
         System.out.println("[10] Eliminar proyecto.");
+        System.out.println("[11] Alta personal.");
         System.out.println("[0] Salir.");
     }
 
-    public static void listarDelegaciones() {
+    private static void listarDelegaciones() {
         try {
             DelegacionImpl delegacionDao = new DelegacionImpl();
             List<Delegacion> delegaciones = delegacionDao.findAllDelegacion();
@@ -98,7 +100,7 @@ public class Main {
         System.out.println("\n");
     }
 
-    public static void crearDelegacion() {
+    private static void crearDelegacion() {
         try {
             Scanner keyboard = new Scanner(System.in);
             DelegacionImpl delegacionDao = new DelegacionImpl();
@@ -223,7 +225,7 @@ public class Main {
         }
     }
 
-    public static void listarProyectos() {
+    private static void listarProyectos() {
         try {
             Scanner keyboard = new Scanner(System.in);
             ProyectoImpl proyectoDao = new ProyectoImpl();
@@ -248,7 +250,7 @@ public class Main {
         System.out.println("\n");
     }
 
-    public static void crearProyecto() {
+    private static void crearProyecto() {
         try {
             Scanner keyboard = new Scanner(System.in);
             ProyectoImpl proyectoDao = new ProyectoImpl();
@@ -282,7 +284,7 @@ public class Main {
                 System.out.print("ID Personal Asociado: ");
                 idPersonalStr = keyboard.nextLine();
                 if (!idPersonalStr.equals("0")) {
-                    personalAsociado.add(new Personal(Integer.parseInt(idPersonalStr), "", "", ""));
+                    personalAsociado.add(new Personal(Integer.parseInt(idPersonalStr), "", "", "", null));
                 }
             } while (!idPersonalStr.equals("0"));
 
@@ -405,6 +407,61 @@ public class Main {
                 proyectoDao.deleteProyecto(nombreProyecto);
                 System.out.println("Delegación eliminada con éxito.\n");
             }
+        } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void altaPersonal() {
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            PersonalImpl personalDao = new PersonalImpl();
+            DelegacionImpl delegacionDao = new DelegacionImpl();
+            System.out.println("---- ALTA PERSONAL ----");
+
+            System.out.print("ID Personal: ");
+            String idStr = keyboard.nextLine();
+            System.out.print("Nombre: ");
+            String nombre = keyboard.nextLine();
+            System.out.print("NIF: ");
+            String nif = keyboard.nextLine();
+            System.out.print("Dirección: ");
+            String direccion = keyboard.nextLine();
+            System.out.print("ID de la delegacion asociada: ");
+            String delegacionId = keyboard.nextLine();
+            System.out.print("Tipo Empleado [1. Empleado, 2. Colaborador, 3. Voluntario Nacional, 4. Voluntario Internacional]: ");
+            String tipoEmpleadoStr = keyboard.nextLine();
+            int tipoEmpleado = Integer.parseInt(tipoEmpleadoStr);
+
+            int id = Integer.parseInt(idStr);
+            Delegacion delegacion = delegacionDao.readDelegacion(delegacionId);
+            Personal personal = new Personal(id, nombre, nif, direccion, delegacion);
+            String tareaDesempena;
+            if (tipoEmpleado == 1) {
+                System.out.print("Salario: ");
+                String salario = keyboard.nextLine();
+                personal = new Empleado(id, nombre, nif, direccion, delegacion, Float.parseFloat(salario));
+            } else if (tipoEmpleado == 2) {
+                System.out.print("Area Colaboracion: ");
+                String areaColaboracion = keyboard.nextLine();
+                personal = new Colaborador(id, nombre, nif, direccion, delegacion, areaColaboracion);
+            } else if (tipoEmpleado == 3) {
+                System.out.print("Tarea desempeña: ");
+                tareaDesempena = keyboard.nextLine();
+                System.out.print("Ciudad: ");
+                String ciudad = keyboard.nextLine();
+                personal = new Voluntario_Nacional(id, nombre, nif, direccion, delegacion, tareaDesempena, "Nacional", ciudad);
+            } else if (tipoEmpleado == 4) {
+                System.out.print("Tarea desempeña: ");
+                tareaDesempena = keyboard.nextLine();
+                System.out.print("Pais: ");
+                String pais = keyboard.nextLine();
+                personal = new Voluntario_Internacional(id, nombre, nif, direccion, delegacion, tareaDesempena, "Internacional", pais);
+            }
+
+            personalDao.createPersonal(personal);
+
+            System.out.println("Personal creado con éxito.\n");
         } catch (SAXException | ParserConfigurationException | IOException e) {
             System.out.println(e.getMessage());
         }

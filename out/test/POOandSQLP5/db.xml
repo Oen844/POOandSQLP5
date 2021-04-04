@@ -73,7 +73,6 @@
 			<direccion>asdfasdf</direccion>
 			<tipoEmpleado>Empleado</tipoEmpleado>
 			<salario>13213.23</salario>
-			<delegacion>1</delegacion>
 		</personal>
 		<personal id="2">
 			<nombre>asdfasdf</nombre>
@@ -81,7 +80,6 @@
 			<direccion>asdfasdf</direccion>
 			<tipoEmpleado>Colaborador</tipoEmpleado>
 			<areaColaboracion>asdfasdf</areaColaboracion>
-			<delegacion>1</delegacion>
 		</personal>
 		<personal id="3">
 			<nombre>asfasdf</nombre>
@@ -90,7 +88,6 @@
 			<tipoEmpleado>Voluntario_Nacional</tipoEmpleado>
 			<tareaDesempena>asdfasdf</tareaDesempena>
 			<ciudad>asdf</ciudad>
-			<delegacion>1</delegacion>
 		</personal>
 		<personal id="4">
 			<nombre>asdfsa</nombre>
@@ -99,15 +96,6 @@
 			<tipoEmpleado>Voluntario_Internacional</tipoEmpleado>
 			<tareaDesempena>asdfasdf</tareaDesempena>
 			<pais>asfsad</pais>
-			<delegacion>1</delegacion>
-		</personal>
-		<personal id="5">
-			<nombre>Nombre</nombre>
-			<nif>1231231</nif>
-			<direccion>Dir</direccion>
-			<tipoEmpleado>Empleado</tipoEmpleado>
-			<salario>1324.36</salario>
-			<delegacion>1</delegacion>
 		</personal>
 	</listaPersonal>
 </db>

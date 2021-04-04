@@ -1,9 +1,10 @@
 package com.P5.entities;
 
-public class Voluntario_Nacional {
+public class Voluntario_Nacional extends Voluntario {
     private String ciudad;
 
-    public Voluntario_Nacional(String ciudad) {
+    public Voluntario_Nacional(int idPersona, String nombre, String nif, String direccion, Delegacion delegacion, String tareaDesepena, String tipoVoluntario, String ciudad) {
+        super(idPersona, nombre, nif, direccion, delegacion, tareaDesepena, tipoVoluntario);
         this.ciudad = ciudad;
     }
 
