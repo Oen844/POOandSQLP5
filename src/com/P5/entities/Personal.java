@@ -15,6 +15,9 @@ public class Personal {
         this.delegacion = delegacion;
     }
 
+    public Personal(int idPersona, String pau, String nif, String calle_falsa) {
+    }
+
     public int getIdPersona() {
         return idPersona;
     }

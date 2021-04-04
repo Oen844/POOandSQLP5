@@ -19,6 +19,7 @@ class DelegacionTest {
         Delegacion delegacion = new Delegacion(1,"Barcelona","609875485","entreculturas@gmail.com", "akksjadkjsd",true);
         String resultado = delegacion.getCiudad();
         String esperado = "Barcelona";
-        assertEquals(esperado,resultado);
+
+        assertEquals(esperado,resultado);   //resultado
     }
 }
