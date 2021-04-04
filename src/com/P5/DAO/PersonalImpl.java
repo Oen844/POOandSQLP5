@@ -13,7 +13,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +21,7 @@ public class PersonalImpl implements IPersonal {
     XMLManager xmlFactory = new XMLManager();
 
     public PersonalImpl() throws IOException, SAXException, ParserConfigurationException {
+        super();
     }
 
     @Override
@@ -33,7 +33,7 @@ public class PersonalImpl implements IPersonal {
             for (int i = 0; i < personal.getLength(); i++) {
                 Node nNode = personal.item(i);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Node personalProyecto = this.xmlFactory.recuperarElementoEnElemento("delegacion", nNode);
+                    Node personalProyecto = this.xmlFactory.recuperarElementoEnElemento("delegacionId", nNode);
                     if (personalProyecto != null && personalProyecto.getTextContent().equals(delegacionId)) {
                         personalList.add(PersonalDTO.toEntity(nNode));
                     }
@@ -91,7 +91,7 @@ public class PersonalImpl implements IPersonal {
                     personalXml.getElementsByTagName("nombre").item(0).setTextContent(persona.getNombre());
                     personalXml.getElementsByTagName("nif").item(0).setTextContent(persona.getNif());
                     personalXml.getElementsByTagName("direccion").item(0).setTextContent(persona.getDireccion());
-                    personalXml.getElementsByTagName("delegacion").item(0).setTextContent(Integer.toString(persona.getDelegacion().getId()));
+                    personalXml.getElementsByTagName("delegacionId").item(0).setTextContent(Integer.toString(persona.getDelegacion().getId()));
 
                     String tipoPersonalClass = this.xmlFactory.recuperarElementoEnElemento("tipoPersonal", personalXml).getTextContent();
                     switch (tipoPersonalClass) {

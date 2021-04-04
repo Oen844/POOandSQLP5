@@ -1,6 +1,8 @@
 package com.P5.DTO;
 
+import com.P5.DAO.DAOFactory;
 import com.P5.DAO.DelegacionImpl;
+import com.P5.DAO.interfaces.IDelegacion;
 import com.P5.entities.*;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -22,8 +24,8 @@ public class PersonalDTO {
         String nif = personalXml.getElementsByTagName("nif").item(0).getTextContent();
         String direccion = personalXml.getElementsByTagName("direccion").item(0).getTextContent();
 
-        String delegacionId = personalXml.getElementsByTagName("delegacion").item(0).getTextContent();
-        DelegacionImpl delegacionDao = new DelegacionImpl();
+        String delegacionId = personalXml.getElementsByTagName("delegacionId").item(0).getTextContent();
+        IDelegacion delegacionDao = DAOFactory.getDelegacionDAO(true);
         Delegacion delegacion = delegacionDao.readDelegacion(delegacionId);
 
         String tipoPersonal = personalXml.getElementsByTagName("tipoPersonal").item(0).getTextContent();

@@ -1,8 +1,9 @@
 package com.P5.main;
 
-import com.P5.DAO.DelegacionImpl;
-import com.P5.DAO.PersonalImpl;
-import com.P5.DAO.ProyectoImpl;
+import com.P5.DAO.*;
+import com.P5.DAO.interfaces.IDelegacion;
+import com.P5.DAO.interfaces.IPersonal;
+import com.P5.DAO.interfaces.IProyecto;
 import com.P5.entities.*;
 import org.xml.sax.SAXException;
 
@@ -103,7 +104,7 @@ public class Main {
 
     private static void listarDelegaciones() {
         try {
-            DelegacionImpl delegacionDao = new DelegacionImpl();
+            IDelegacion delegacionDao = DAOFactory.getDelegacionDAO(true);
             List<Delegacion> delegaciones = delegacionDao.findAllDelegacion();
             System.out.println("---- LISTA DE DELEGACIONES ----");
             for (Delegacion delegacion : delegaciones) {
@@ -119,7 +120,7 @@ public class Main {
     private static void crearDelegacion() {
         try {
             Scanner keyboard = new Scanner(System.in);
-            DelegacionImpl delegacionDao = new DelegacionImpl();
+            IDelegacion delegacionDao = DAOFactory.getDelegacionDAO(true);
             System.out.println("---- CREAR DELEGACIÓN ----");
 
             System.out.print("ID: ");
@@ -153,7 +154,7 @@ public class Main {
     private static void leerDelegacion() {
         try {
             Scanner keyboard = new Scanner(System.in);
-            DelegacionImpl delegacionDao = new DelegacionImpl();
+            IDelegacion delegacionDao = DAOFactory.getDelegacionDAO(true);
             System.out.println("---- LEER DELEGACIÓN ----");
 
             System.out.print("ID: ");
@@ -172,7 +173,7 @@ public class Main {
     private static void actualizarDelegacion() {
         try {
             Scanner keyboard = new Scanner(System.in);
-            DelegacionImpl delegacionDao = new DelegacionImpl();
+            IDelegacion delegacionDao = DAOFactory.getDelegacionDAO(true);
             System.out.println("---- ACTUALIZAR DELEGACIÓN ----");
 
             System.out.print("ID: ");
@@ -224,7 +225,7 @@ public class Main {
     private static void eliminarDelegacion() {
         try {
             Scanner keyboard = new Scanner(System.in);
-            DelegacionImpl delegacionDao = new DelegacionImpl();
+            IDelegacion delegacionDao = DAOFactory.getDelegacionDAO(true);
             System.out.println("---- ELIMINAR DELEGACIÓN ----");
 
             System.out.print("ID: ");
@@ -244,7 +245,7 @@ public class Main {
     private static void listarProyectos() {
         try {
             Scanner keyboard = new Scanner(System.in);
-            ProyectoImpl proyectoDao = new ProyectoImpl();
+            IProyecto proyectoDao = DAOFactory.getProyectoDAO(true);
 
             System.out.print("ID Delegacion: ");
             String idStr = keyboard.nextLine();
@@ -260,7 +261,7 @@ public class Main {
             } else {
                 System.out.println("La delegacion especificada no tiene proyectos.");
             }
-        } catch (SAXException | ParserConfigurationException | IOException e) {
+        } catch (SAXException | ParserConfigurationException | IOException | ParseException e) {
             System.out.println(e.getMessage());
         }
         System.out.println("\n");
@@ -269,8 +270,8 @@ public class Main {
     private static void crearProyecto() {
         try {
             Scanner keyboard = new Scanner(System.in);
-            ProyectoImpl proyectoDao = new ProyectoImpl();
-            DelegacionImpl delegacionDao = new DelegacionImpl();
+            IProyecto proyectoDao = DAOFactory.getProyectoDAO(true);
+            IDelegacion delegacionDao = DAOFactory.getDelegacionDAO(true);
             System.out.println("---- CREAR PROYECTO ----");
 
             System.out.print("Nombre: ");
@@ -322,7 +323,7 @@ public class Main {
     private static void leerProyecto() {
         try {
             Scanner keyboard = new Scanner(System.in);
-            ProyectoImpl proyectoDao = new ProyectoImpl();
+            IProyecto proyectoDao = DAOFactory.getProyectoDAO(true);
             System.out.println("---- LEER PROYECTO ----");
 
             System.out.print("Nombre: ");
@@ -333,7 +334,7 @@ public class Main {
             } else {
                 System.out.println("El nombre del proyecto no existe.");
             }
-        } catch (SAXException | ParserConfigurationException | IOException e) {
+        } catch (SAXException | ParserConfigurationException | IOException | ParseException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -341,7 +342,7 @@ public class Main {
     private static void actualizarProyecto() {
         try {
             Scanner keyboard = new Scanner(System.in);
-            ProyectoImpl proyectoDao = new ProyectoImpl();
+            IProyecto proyectoDao = DAOFactory.getProyectoDAO(true);
             System.out.println("---- ACTUALIZAR PROYECTO ----");
 
             System.out.print("Nombre del Proyecto: ");
@@ -411,7 +412,7 @@ public class Main {
     private static void eliminarProyecto() {
         try {
             Scanner keyboard = new Scanner(System.in);
-            ProyectoImpl proyectoDao = new ProyectoImpl();
+            IProyecto proyectoDao = DAOFactory.getProyectoDAO(true);
             System.out.println("---- ELIMINAR PROYECTO ----");
 
             System.out.print("Nombre del proyecto: ");
@@ -423,7 +424,7 @@ public class Main {
                 proyectoDao.deleteProyecto(nombreProyecto);
                 System.out.println("Delegación eliminada con éxito.\n");
             }
-        } catch (SAXException | ParserConfigurationException | IOException e) {
+        } catch (SAXException | ParserConfigurationException | IOException | ParseException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -431,7 +432,7 @@ public class Main {
     private static void listarPersonal() {
         try {
             Scanner keyboard = new Scanner(System.in);
-            PersonalImpl personalDao = new PersonalImpl();
+            IPersonal personalDao = DAOFactory.getPersonalDAO(true);
 
             System.out.print("ID Delegacion: ");
             String idStr = keyboard.nextLine();
@@ -456,8 +457,8 @@ public class Main {
     private static void altaPersonal() {
         try {
             Scanner keyboard = new Scanner(System.in);
-            PersonalImpl personalDao = new PersonalImpl();
-            DelegacionImpl delegacionDao = new DelegacionImpl();
+            IPersonal personalDao = DAOFactory.getPersonalDAO(true);
+            IDelegacion delegacionDao = DAOFactory.getDelegacionDAO(true);
             System.out.println("---- ALTA PERSONAL ----");
 
             System.out.print("ID Personal: ");
@@ -511,7 +512,7 @@ public class Main {
     private static void leerPersonal() {
         try {
             Scanner keyboard = new Scanner(System.in);
-            PersonalImpl personalDao = new PersonalImpl();
+            IPersonal personalDao = DAOFactory.getPersonalDAO(true);
             System.out.println("---- LEER PERSONAL ----");
 
             System.out.print("ID Personal: ");
@@ -531,7 +532,7 @@ public class Main {
     private static void actualizarPersonal() {
         try {
             Scanner keyboard = new Scanner(System.in);
-            PersonalImpl personalDao = new PersonalImpl();
+            IPersonal personalDao = DAOFactory.getPersonalDAO(true);
             System.out.println("---- ACTUALIZAR PERSONAL ----");
 
             System.out.print("ID Personal: ");
@@ -560,7 +561,7 @@ public class Main {
                     personal.setDireccion(direccion);
                 }
                 if (delegacionId.length() > 0) {
-                    DelegacionImpl delegacionDao = new DelegacionImpl();
+                    IDelegacion delegacionDao = DAOFactory.getDelegacionDAO(true);
                     personal.setDelegacion(delegacionDao.readDelegacion(delegacionId));
                 }
 
@@ -636,7 +637,7 @@ public class Main {
     private static void eliminarPersonal() {
         try {
             Scanner keyboard = new Scanner(System.in);
-            PersonalImpl personalDao = new PersonalImpl();
+            IPersonal personalDao = DAOFactory.getPersonalDAO(true);
             System.out.println("---- ELIMINAR PERSONAL ----");
 
             System.out.print("ID Personal: ");

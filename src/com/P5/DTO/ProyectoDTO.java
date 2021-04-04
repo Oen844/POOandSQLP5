@@ -1,6 +1,8 @@
 package com.P5.DTO;
 
+import com.P5.DAO.DAOFactory;
 import com.P5.DAO.DelegacionImpl;
+import com.P5.DAO.interfaces.IDelegacion;
 import com.P5.entities.Delegacion;
 import com.P5.entities.Personal;
 import com.P5.entities.Proyecto;
@@ -38,8 +40,8 @@ public class ProyectoDTO {
             personalAsociado.add(new Personal(Integer.parseInt(personalId), "", "", "", null));
         }
 
-        String delegacionId = proyectoXml.getElementsByTagName("delegacion").item(0).getTextContent();
-        DelegacionImpl delegacionDao = new DelegacionImpl();
+        String delegacionId = proyectoXml.getElementsByTagName("delegacionId").item(0).getTextContent();
+        IDelegacion delegacionDao = DAOFactory.getDelegacionDAO(true);
         Delegacion delegacion = delegacionDao.readDelegacion(delegacionId);
 
         Date fechaInicioDate = new SimpleDateFormat("DD/MM/YYYY").parse(fechaInicio);

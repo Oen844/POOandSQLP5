@@ -131,7 +131,7 @@ public class XMLManager {
         }
         proyectoXML.appendChild(personalAsociado);
 
-        Element delegacion = this.doc.createElement("delegacion");
+        Element delegacion = this.doc.createElement("delegacionId");
         delegacion.appendChild(this.doc.createTextNode(proyecto.getDelegacion().getId().toString()));
         proyectoXML.appendChild(delegacion);
 
@@ -193,7 +193,7 @@ public class XMLManager {
                 break;
         }
 
-        Element delegacion = this.doc.createElement("delegacion");
+        Element delegacion = this.doc.createElement("delegacionId");
         delegacion.appendChild(this.doc.createTextNode(Integer.toString(personal.getDelegacion().getId())));
         personalXml.appendChild(delegacion);
 
@@ -215,9 +215,9 @@ public class XMLManager {
         NodeList nodeList = this.doc.getElementsByTagName(elementTagName);
         for (int i = 0; i < nodeList.getLength(); i++) {
             Element nodeXml = (Element) nodeList.item(i);
-            if (nodeXml.getAttribute("id") != null && nodeXml.getAttribute("id").equals(elementId)) {
+            if (nodeXml.getAttribute("id").equals(elementId)) {
                 this.doc.getElementsByTagName(parentTagName).item(0).removeChild(nodeXml);
-            } else {
+            } else if (nodeXml.getAttribute("id").equals("")) {
                 Node nombreNodeXml = this.recuperarElementoEnElemento("nombre", nodeXml);
                 if (nombreNodeXml.getTextContent().equals(elementId)) {
                     this.doc.getElementsByTagName(parentTagName).item(0).removeChild(nodeXml);

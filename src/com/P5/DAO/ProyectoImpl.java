@@ -33,7 +33,7 @@ public class ProyectoImpl implements IProyecto {
             for (int i = 0; i < proyectos.getLength(); i++) {
                 Node nNode = proyectos.item(i);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Node delegacionProyecto = this.xmlFactory.recuperarElementoEnElemento("delegacion", nNode);
+                    Node delegacionProyecto = this.xmlFactory.recuperarElementoEnElemento("delegacionId", nNode);
                     if (delegacionProyecto.getTextContent().equals(delegacionId)) {
                         proyectosList.add(ProyectoDTO.toEntity(nNode));
                     }
@@ -80,8 +80,7 @@ public class ProyectoImpl implements IProyecto {
         NodeList proyectos = this.xmlFactory.recuperarElemento("proyecto");
         for (int i = 0; i < proyectos.getLength(); i++) {
             Element proyectoXml = (Element) proyectos.item(i);
-            Node nombreNodeXml = this.xmlFactory.recuperarElementoEnElemento("nombre", proyectoXml);
-            if (proyectoXml.getElementsByTagName("nombre").item(0).getTextContent().equals(nombreNodeXml.getTextContent())) {
+            if (proyectoXml.getElementsByTagName("nombre").item(0).getTextContent().equals(proyecto.getNombre())) {
                 proyectoXml.getElementsByTagName("pais").item(0).setTextContent(proyecto.getPais());
                 proyectoXml.getElementsByTagName("localizacion").item(0).setTextContent(proyecto.getLocalizacion());
                 proyectoXml.getElementsByTagName("lineaAccion").item(0).setTextContent(proyecto.getLineaAccion());
@@ -108,8 +107,7 @@ public class ProyectoImpl implements IProyecto {
         NodeList proyectos = this.xmlFactory.recuperarElemento("proyecto");
         for (int i = 0; i < proyectos.getLength(); i++) {
             Element proyectoXML = (Element) proyectos.item(i);
-            Node nombreNodeXml = this.xmlFactory.recuperarElementoEnElemento("nombre", proyectoXML);
-            if (proyectoXML.getElementsByTagName("nombre").item(0).getTextContent().equals(nombreNodeXml.getTextContent())) {
+            if (proyectoXML.getElementsByTagName("nombre").item(0).getTextContent().equals(nombre)) {
                 try {
                     this.xmlFactory.eliminarElemento("proyectos", "proyecto", nombre);
                 } catch (TransformerException e) {
