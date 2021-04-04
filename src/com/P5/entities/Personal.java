@@ -1,7 +1,7 @@
 package com.P5.entities;
 
 public class Personal {
-    private Integer idPersona;
+    private  Integer idPersona;
     private String nombre;
     private String nif;
     private String direccion;

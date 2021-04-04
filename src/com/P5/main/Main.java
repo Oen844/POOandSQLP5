@@ -10,7 +10,7 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.lang.reflect.Array;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -253,6 +253,28 @@ public class Main {
         }
     }
 
+    private static void eliminarPersona(){
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            //DelegacionImpl delegacionDao = new DelegacionImpl();
+            PersonalImpl personalDao = new PersonalImpl();
+            System.out.println("---- ELIMINAR PERSONAL ----");
+
+            System.out.print("ID: ");
+            String idStr = keyboard.nextLine();
+            Personal personal = personalDao.readPersonal(idStr);
+            if (personal == null) {
+                System.out.println("El ID del personal no existe.");
+            } else {
+                personalDao.deletePersonal(String.valueOf(personal.getIdPersona()));
+                System.out.println("Personal eliminada con éxito.\n");
+            }
+        } catch (SAXException | ParserConfigurationException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
     private static void eliminarDelegacion() {
         try {
             Scanner keyboard = new Scanner(System.in);
@@ -266,6 +288,7 @@ public class Main {
                 System.out.println("El ID de la delegación no existe.");
             } else {
                 delegacionDao.deleteDelegacion(delegacion.getId().toString());
+
                 System.out.println("Delegación eliminada con éxito.\n");
             }
         } catch (SAXException | ParserConfigurationException | IOException e) {

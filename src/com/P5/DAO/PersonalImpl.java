@@ -62,6 +62,18 @@ public class PersonalImpl implements IPersonal {
 
     @Override
     public void deletePersonal(Personal persona) {
+        NodeList personales = this.xmlFactory.recuperarElemento("personal");
+        for (int i = 0; i < personales.getLength(); i++) {
+            Element personalXML = (Element) personales.item(i);
+            if (personalXML.getAttribute("id").equals(persona.getIdPersona())) {
+                try {
+                    this.xmlFactory.eliminarElemento("personales", "personal", persona.getIdPersona());
+                } catch (TransformerException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+
 
     }
 
