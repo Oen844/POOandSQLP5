@@ -12,6 +12,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class PersonalXMLImpl implements IPersonal {
                     }
                 }
             }
-        } catch (ParserConfigurationException | SAXException | ParseException | IOException e) {
+        } catch (ParserConfigurationException | SAXException | ParseException | IOException | SQLException e) {
             System.out.println(e.getMessage());
         }
 
@@ -71,7 +72,7 @@ public class PersonalXMLImpl implements IPersonal {
                     }
                 }
             }
-        } catch (ParserConfigurationException | SAXException | ParseException | IOException e) {
+        } catch (ParserConfigurationException | SAXException | ParseException | IOException | SQLException e) {
             System.out.println(e.getMessage());
         }
 

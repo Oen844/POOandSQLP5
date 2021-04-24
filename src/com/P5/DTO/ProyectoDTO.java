@@ -12,13 +12,14 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class ProyectoDTO {
-    public static Proyecto toEntity(Node proyectoNode) throws ParseException, ParserConfigurationException, SAXException, IOException {
+    public static Proyecto toEntity(Node proyectoNode) throws ParseException, ParserConfigurationException, SAXException, IOException, SQLException {
         Element proyectoXml = (Element) proyectoNode;
         String nombre = proyectoXml.getElementsByTagName("nombre").item(0).getTextContent();
         String pais = proyectoXml.getElementsByTagName("pais").item(0).getTextContent();
@@ -40,7 +41,7 @@ public class ProyectoDTO {
         }
 
         String delegacionId = proyectoXml.getElementsByTagName("delegacionId").item(0).getTextContent();
-        IDelegacion delegacionDao = DAOFactory.getDelegacionDAO(true);
+        IDelegacion delegacionDao = DAOFactory.getDelegacionDAO();
         Delegacion delegacion = delegacionDao.readDelegacion(delegacionId);
 
         Date fechaInicioDate = new SimpleDateFormat("DD/MM/YYYY").parse(fechaInicio);

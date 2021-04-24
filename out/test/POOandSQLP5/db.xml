@@ -93,23 +93,5 @@
 			</personalAsociado>
 			<delegacionId>2</delegacionId>
 		</proyecto>
-		<proyecto>
-			<nombre>SADF</nombre>
-			<pais>España</pais>
-			<localizacion>Burgos</localizacion>
-			<lineaAccion>Electricidad</lineaAccion>
-			<subLineaAccion>ASDF</subLineaAccion>
-			<fechaInicio>04/01/2021</fechaInicio>
-			<fechaFin>04/01/2021</fechaFin>
-			<socioLocal>Amancio Ortega</socioLocal>
-			<financiador>Amancio Ortega</financiador>
-			<financiacionAportada>1000000</financiacionAportada>
-			<personalAsociado>
-				<personalId>1</personalId>
-				<personalId>2</personalId>
-				<personalId>3</personalId>
-			</personalAsociado>
-			<delegacionId>1</delegacionId>
-		</proyecto>
 	</proyectos>
 </db>

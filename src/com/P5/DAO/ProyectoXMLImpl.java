@@ -12,6 +12,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class ProyectoXMLImpl implements IProyecto {
                     }
                 }
             }
-        } catch (ParserConfigurationException | SAXException | ParseException | IOException e) {
+        } catch (ParserConfigurationException | SAXException | ParseException | IOException | SQLException e) {
             System.out.println(e.getMessage());
         }
 
@@ -57,7 +58,7 @@ public class ProyectoXMLImpl implements IProyecto {
                     return ProyectoDTO.toEntity(delegacionXML);
                 }
             }
-        } catch (ParserConfigurationException | SAXException | ParseException | IOException e) {
+        } catch (ParserConfigurationException | SAXException | ParseException | IOException | SQLException e) {
             System.out.println(e.getMessage());
         }
 

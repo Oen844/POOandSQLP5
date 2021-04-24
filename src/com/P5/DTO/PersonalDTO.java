@@ -9,10 +9,11 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 
 public class PersonalDTO {
-    public static Personal toEntity(Node proyectoNode) throws ParseException, ParserConfigurationException, SAXException, IOException {
+    public static Personal toEntity(Node proyectoNode) throws ParseException, ParserConfigurationException, SAXException, IOException, SQLException {
         Element personalXml = (Element) proyectoNode;
         Integer id = Integer.parseInt(personalXml.getAttribute("id"));
         String nombre = personalXml.getElementsByTagName("nombre").item(0).getTextContent();
@@ -20,7 +21,7 @@ public class PersonalDTO {
         String direccion = personalXml.getElementsByTagName("direccion").item(0).getTextContent();
 
         String delegacionId = personalXml.getElementsByTagName("delegacionId").item(0).getTextContent();
-        IDelegacion delegacionDao = DAOFactory.getDelegacionDAO(true);
+        IDelegacion delegacionDao = DAOFactory.getDelegacionDAO();
         Delegacion delegacion = delegacionDao.readDelegacion(delegacionId);
 
         String tipoPersonal = personalXml.getElementsByTagName("tipoPersonal").item(0).getTextContent();
