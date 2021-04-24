@@ -16,11 +16,11 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonalImpl implements IPersonal {
+public class PersonalXMLImpl implements IPersonal {
 
     XMLManager xmlFactory = new XMLManager();
 
-    public PersonalImpl() throws IOException, SAXException, ParserConfigurationException {
+    public PersonalXMLImpl() throws IOException, SAXException, ParserConfigurationException {
         super();
     }
 

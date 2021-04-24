@@ -1,6 +1,6 @@
 package com.P5.main;
 
-import com.P5.DAO.*;
+import com.P5.DAO.DAOFactory;
 import com.P5.DAO.interfaces.IDelegacion;
 import com.P5.DAO.interfaces.IPersonal;
 import com.P5.DAO.interfaces.IProyecto;
@@ -9,6 +9,8 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,7 +19,32 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
+    public static Connection connection;
+
     public static void main(String[] args) {
+        connectDatabase();
+        chooseOption();
+    }
+
+    private static void connectDatabase() {
+        String baseUrl = "localhost";
+        String port = "3306";
+        String database = "POOandSQLP5";
+
+        String url = String.format("jdbc:mysql://%s:%s/%s", baseUrl, port, database);
+        String user = "user";
+        String password = "user";
+
+        try {
+            connection = DriverManager.getConnection(url, user, password);
+        } catch (Exception e) {
+            connection = null;
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void chooseOption() {
         int option;
         do {
             Scanner keyboard = new Scanner(System.in);

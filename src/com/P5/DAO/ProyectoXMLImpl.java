@@ -17,11 +17,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProyectoImpl implements IProyecto {
+public class ProyectoXMLImpl implements IProyecto {
 
     XMLManager xmlFactory = new XMLManager();
 
-    public ProyectoImpl() throws IOException, SAXException, ParserConfigurationException {
+    public ProyectoXMLImpl() throws IOException, SAXException, ParserConfigurationException {
     }
 
     @Override

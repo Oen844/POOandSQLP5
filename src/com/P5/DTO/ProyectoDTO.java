@@ -1,7 +1,6 @@
 package com.P5.DTO;
 
 import com.P5.DAO.DAOFactory;
-import com.P5.DAO.DelegacionImpl;
 import com.P5.DAO.interfaces.IDelegacion;
 import com.P5.entities.Delegacion;
 import com.P5.entities.Personal;

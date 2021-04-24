@@ -8,29 +8,31 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
+import static com.P5.main.Main.connection;
+
 public class DAOFactory {
 
     public static IDelegacion getDelegacionDAO(boolean xml) throws ParserConfigurationException, SAXException, IOException {
         if (xml) {
-            return new DelegacionImpl();
+            return new DelegacionXMLImpl();
         } else {
-            return new DelegacionImpl();
+            return new DelegacionXMLImpl();
         }
     }
 
     public static IPersonal getPersonalDAO(boolean xml) throws ParserConfigurationException, SAXException, IOException {
         if (xml) {
-            return new PersonalImpl();
+            return new PersonalXMLImpl();
         } else {
-            return new PersonalImpl();
+            return new PersonalXMLImpl();
         }
     }
 
     public static IProyecto getProyectoDAO(boolean xml) throws ParserConfigurationException, SAXException, IOException {
         if (xml) {
-            return new ProyectoImpl();
+            return new ProyectoXMLImpl();
         } else {
-            return new ProyectoImpl();
+            return new ProyectoXMLImpl();
         }
     }
 }

@@ -15,11 +15,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DelegacionImpl implements IDelegacion {
+public class DelegacionXMLImpl implements IDelegacion {
 
     XMLManager xmlFactory = new XMLManager();
 
-    public DelegacionImpl() throws IOException, SAXException, ParserConfigurationException {
+    public DelegacionXMLImpl() throws IOException, SAXException, ParserConfigurationException {
     }
 
     @Override
