@@ -21,9 +21,9 @@ public class DAOFactory {
         }
     }
 
-    public static IPersonal getPersonalDAO() throws ParserConfigurationException, SAXException, IOException {
+    public static IPersonal getPersonalDAO() throws ParserConfigurationException, SAXException, IOException, SQLException {
         if (connection != null) {
-            return new PersonalXMLImpl();
+            return new PersonalDBImpl();
         } else {
             return new PersonalXMLImpl();
         }

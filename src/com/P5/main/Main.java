@@ -474,9 +474,9 @@ public class Main {
                 }
                 System.out.println("Items: " + personal.size());
             } else {
-                System.out.println("La delegacion especificada no tiene proyectos.");
+                System.out.println("La delegacion especificada no tiene personal.");
             }
-        } catch (SAXException | ParserConfigurationException | IOException e) {
+        } catch (SAXException | ParserConfigurationException | IOException | SQLException e) {
             System.out.println(e.getMessage());
         }
         System.out.println("\n");
@@ -552,7 +552,7 @@ public class Main {
             } else {
                 System.out.println("El ID del personal no existe.");
             }
-        } catch (SAXException | ParserConfigurationException | IOException e) {
+        } catch (SAXException | ParserConfigurationException | IOException | SQLException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -678,7 +678,7 @@ public class Main {
                 personalDao.deletePersonal(personal.getIdPersona());
                 System.out.println("Personal eliminado con éxito.\n");
             }
-        } catch (SAXException | ParserConfigurationException | IOException e) {
+        } catch (SAXException | ParserConfigurationException | IOException | SQLException e) {
             System.out.println(e.getMessage());
         }
     }

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<db>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><db>
 	<delegaciones>
 		<delegacion id="1">
 			<ciudad>OLMEDILLO DE ROA</ciudad>
@@ -59,7 +58,8 @@
 			<delegacionId>1</delegacionId>
 		</personal>
 	</listaPersonal>
-	<proyectos>
+	
+<proyectos>
 		<proyecto>
 			<nombre>Proyecto 1</nombre>
 			<pais>España</pais>
@@ -93,5 +93,4 @@
 			</personalAsociado>
 			<delegacionId>2</delegacionId>
 		</proyecto>
-	</proyectos>
-</db>
+	<proyecto><nombre>Proyecto A</nombre><pais>España</pais><localizacion>Ourense</localizacion><lineaAccion>Línea A</lineaAccion><subLineaAccion>Línea 1</subLineaAccion><fechaInicio>364/12/2020</fechaInicio><fechaFin>03/01/2022</fechaFin><socioLocal>Un tio</socioLocal><financiador>Calquera</financiador><financiacionAportada>100000</financiacionAportada><personalAsociado><personalId>2</personalId><personalId>2</personalId><personalId>2</personalId></personalAsociado><delegacionId>1</delegacionId></proyecto></proyectos></db>
