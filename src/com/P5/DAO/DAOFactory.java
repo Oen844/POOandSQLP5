@@ -29,9 +29,9 @@ public class DAOFactory {
         }
     }
 
-    public static IProyecto getProyectoDAO() throws ParserConfigurationException, SAXException, IOException {
+    public static IProyecto getProyectoDAO() throws ParserConfigurationException, SAXException, IOException, SQLException {
         if (connection != null) {
-            return new ProyectoXMLImpl();
+            return new ProyectoDBImpl();
         } else {
             return new ProyectoXMLImpl();
         }

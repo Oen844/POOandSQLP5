@@ -16,11 +16,12 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 public class ProyectoDTO {
     public static Proyecto toEntity(Node proyectoNode) throws ParseException, ParserConfigurationException, SAXException, IOException, SQLException {
         Element proyectoXml = (Element) proyectoNode;
+        Integer id = Integer.parseInt(proyectoXml.getAttribute("id"));
         String nombre = proyectoXml.getElementsByTagName("nombre").item(0).getTextContent();
         String pais = proyectoXml.getElementsByTagName("pais").item(0).getTextContent();
         String localizacion = proyectoXml.getElementsByTagName("localizacion").item(0).getTextContent();
@@ -44,8 +45,8 @@ public class ProyectoDTO {
         IDelegacion delegacionDao = DAOFactory.getDelegacionDAO();
         Delegacion delegacion = delegacionDao.readDelegacion(delegacionId);
 
-        Date fechaInicioDate = new SimpleDateFormat("DD/MM/YYYY").parse(fechaInicio);
-        Date fechaFinDate = new SimpleDateFormat("DD/MM/YYYY").parse(fechaFin);
-        return new Proyecto(nombre, pais, localizacion, lineaAccion, subLineaAccion, fechaInicioDate, fechaFinDate, socioLocal, financiador, financiacionAportada, personalAsociado, delegacion);
+        Date fechaInicioDate = (Date) new SimpleDateFormat("DD/MM/YYYY").parse(fechaInicio);
+        Date fechaFinDate = (Date) new SimpleDateFormat("DD/MM/YYYY").parse(fechaFin);
+        return new Proyecto(id, nombre, pais, localizacion, lineaAccion, subLineaAccion, fechaInicioDate, fechaFinDate, socioLocal, financiador, financiacionAportada, personalAsociado, delegacion);
     }
 }

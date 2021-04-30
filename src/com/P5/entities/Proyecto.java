@@ -1,10 +1,11 @@
 package com.P5.entities;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 public class Proyecto {
 
+    private int id;
     private String nombre;
     private String pais;
     private String localizacion;
@@ -18,7 +19,8 @@ public class Proyecto {
     private ArrayList<Personal> personalAsociado;
     private Delegacion delegacion;
 
-    public Proyecto(String nombre, String pais, String localizacion, String lineaAccion, String subLineaAccion, Date fechaInicio, Date fechaFin, String socioLocal, String financiador, String financiacionAportada, ArrayList<Personal> personalAsociado, Delegacion delegacion) {
+    public Proyecto(int id, String nombre, String pais, String localizacion, String lineaAccion, String subLineaAccion, Date fechaInicio, Date fechaFin, String socioLocal, String financiador, String financiacionAportada, ArrayList<Personal> personalAsociado, Delegacion delegacion) {
+        this.id = id;
         this.nombre = nombre;
         this.pais = pais;
         this.localizacion = localizacion;
@@ -31,6 +33,10 @@ public class Proyecto {
         this.financiacionAportada = financiacionAportada;
         this.personalAsociado = personalAsociado;
         this.delegacion = delegacion;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNombre() {

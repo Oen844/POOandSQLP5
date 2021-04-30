@@ -2,7 +2,7 @@ package com.P5.entities;
 
 import com.P5.enums.TipoPago;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Aportacion {
     private float importe;

@@ -2,10 +2,7 @@ package com.P5.DAO;
 
 import com.P5.DAO.interfaces.IPersonal;
 import com.P5.entities.*;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +13,7 @@ import static com.P5.main.Main.connection;
 
 public class PersonalDBImpl implements IPersonal {
 
-    public PersonalDBImpl() throws IOException, SAXException, ParserConfigurationException, SQLException {
+    public PersonalDBImpl() throws SQLException {
         String CREATE_TABLE_PERSONAL = "CREATE TABLE IF NOT EXISTS personal ("
                 + "id int(11) AUTO_INCREMENT,"
                 + "nombre VARCHAR(255) NOT NULL,"
@@ -307,6 +304,11 @@ public class PersonalDBImpl implements IPersonal {
     @Override
     public void deletePersonal(int idPersonal) {
         try {
+            String DELETE_PROYECTO_PERSONAL = "DELETE FROM proyecto_personal WHERE personal_id = ?";
+            PreparedStatement stmProyectoPersonal = connection.prepareStatement(DELETE_PROYECTO_PERSONAL);
+            stmProyectoPersonal.setInt(1, idPersonal);
+            stmProyectoPersonal.executeUpdate();
+
             String DELETE_PERSONAL = "DELETE FROM personal WHERE id = ?";
             PreparedStatement stm = connection.prepareStatement(DELETE_PERSONAL);
             stm.setInt(1, idPersonal);

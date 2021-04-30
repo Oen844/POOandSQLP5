@@ -6,7 +6,7 @@ import com.P5.entities.Personal;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Date;
+import java.sql.Date;
 
 class PersonalTest {
 

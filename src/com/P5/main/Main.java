@@ -10,12 +10,12 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -289,7 +289,7 @@ public class Main {
             } else {
                 System.out.println("La delegacion especificada no tiene proyectos.");
             }
-        } catch (SAXException | ParserConfigurationException | IOException | ParseException e) {
+        } catch (SAXException | ParserConfigurationException | IOException | ParseException | SQLException e) {
             System.out.println(e.getMessage());
         }
         System.out.println("\n");
@@ -302,6 +302,8 @@ public class Main {
             IDelegacion delegacionDao = DAOFactory.getDelegacionDAO();
             System.out.println("---- CREAR PROYECTO ----");
 
+            System.out.print("ID: ");
+            String idStr = keyboard.nextLine();
             System.out.print("Nombre: ");
             String nombre = keyboard.nextLine();
             System.out.print("Pais: ");
@@ -337,9 +339,9 @@ public class Main {
             String delegacionId = keyboard.nextLine();
 
             Delegacion delegacion = delegacionDao.readDelegacion(delegacionId);
-            Date fechaInicioDate = new SimpleDateFormat("DD/MM/YYYY").parse(fechaInicio);
-            Date fechaFinDate = new SimpleDateFormat("DD/MM/YYYY").parse(fechaFin);
-            Proyecto proyecto = new Proyecto(nombre, pais, localizacion, lineaAccion, subLineaAccion, fechaInicioDate, fechaFinDate, socioLocal, financiador, financiacionAportada, personalAsociado, delegacion);
+            Date fechaInicioDate = new Date(new SimpleDateFormat("DD/MM/YYYY").parse(fechaInicio).getTime());
+            Date fechaFinDate = new Date(new SimpleDateFormat("DD/MM/YYYY").parse(fechaFin).getTime());
+            Proyecto proyecto = new Proyecto(Integer.parseInt(idStr), nombre, pais, localizacion, lineaAccion, subLineaAccion, fechaInicioDate, fechaFinDate, socioLocal, financiador, financiacionAportada, personalAsociado, delegacion);
             proyectoDao.createProyecto(proyecto);
 
             System.out.println("Delegación creada con éxito.\n");
@@ -362,7 +364,7 @@ public class Main {
             } else {
                 System.out.println("El nombre del proyecto no existe.");
             }
-        } catch (SAXException | ParserConfigurationException | IOException | ParseException e) {
+        } catch (SAXException | ParserConfigurationException | IOException | ParseException | SQLException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -412,11 +414,11 @@ public class Main {
                     proyecto.setSubLineaAccion(subLineaAccion);
                 }
                 if (fechaInicio.length() > 0) {
-                    Date fechaInicioDate = new SimpleDateFormat("DD/MM/YYYY").parse(fechaInicio);
+                    Date fechaInicioDate = new Date(new SimpleDateFormat("DD/MM/YYYY").parse(fechaInicio).getTime());
                     proyecto.setFechaInicio(fechaInicioDate);
                 }
                 if (fechaInicio.length() > 0) {
-                    Date fechaFinDate = new SimpleDateFormat("DD/MM/YYYY").parse(fechaFin);
+                    Date fechaFinDate = new Date(new SimpleDateFormat("DD/MM/YYYY").parse(fechaFin).getTime());
                     proyecto.setFechaInicio(fechaFinDate);
                 }
                 if (socioLocal.length() > 0) {
@@ -432,7 +434,7 @@ public class Main {
                 proyectoDao.updateProyecto(proyecto);
                 System.out.println("Proyecto actualizado con éxito.\n");
             }
-        } catch (SAXException | ParserConfigurationException | IOException | ParseException e) {
+        } catch (SAXException | ParserConfigurationException | IOException | ParseException | SQLException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -450,9 +452,9 @@ public class Main {
                 System.out.println("El proyecto no existe.");
             } else {
                 proyectoDao.deleteProyecto(nombreProyecto);
-                System.out.println("Delegación eliminada con éxito.\n");
+                System.out.println("Proyecto eliminado con éxito.\n");
             }
-        } catch (SAXException | ParserConfigurationException | IOException | ParseException e) {
+        } catch (SAXException | ParserConfigurationException | IOException | ParseException | SQLException e) {
             System.out.println(e.getMessage());
         }
     }
