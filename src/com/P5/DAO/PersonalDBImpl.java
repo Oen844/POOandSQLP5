@@ -2,14 +2,14 @@ package com.P5.DAO;
 
 import com.P5.DAO.interfaces.IPersonal;
 import com.P5.entities.*;
+import com.P5.utils.DbDonnection;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.P5.main.Main.connection;
 
 public class PersonalDBImpl implements IPersonal {
 
@@ -29,8 +29,10 @@ public class PersonalDBImpl implements IPersonal {
                 + "delegacion_id int(11),"
                 + "PRIMARY KEY (id),"
                 + "FOREIGN KEY (delegacion_id) REFERENCES delegaciones(id))";
+        Connection connection = DbDonnection.connectDatabase();
         PreparedStatement stm = connection.prepareStatement(CREATE_TABLE_PERSONAL);
         stm.executeUpdate();
+        connection.close();
     }
 
     @Override
@@ -40,6 +42,7 @@ public class PersonalDBImpl implements IPersonal {
         try {
             DelegacionDBImpl delegacionDao = new DelegacionDBImpl();
             String FIND_PERSONAL_DELEGACION = "SELECT * FROM personal WHERE delegacion_id = ?";
+            Connection connection = DbDonnection.connectDatabase();
             PreparedStatement stm = connection.prepareStatement(FIND_PERSONAL_DELEGACION);
             stm.setInt(1, Integer.parseInt(delegacionId));
             ResultSet res = stm.executeQuery();
@@ -95,6 +98,7 @@ public class PersonalDBImpl implements IPersonal {
 
                 personalList.add(p);
             }
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -107,8 +111,9 @@ public class PersonalDBImpl implements IPersonal {
         try {
             String[] tipoPersonalClassSplit = personal.getClass().getName().split("\\.");
             String tipoPersonalClass = tipoPersonalClassSplit[tipoPersonalClassSplit.length - 1];
-            PreparedStatement stm;
 
+            Connection connection = DbDonnection.connectDatabase();
+            PreparedStatement stm;
             switch (tipoPersonalClass) {
                 case "Empleado":
                     String CREATE_EMPLEADO = "INSERT INTO personal (nombre, nif, direccion, tipo_personal, salario, delegacion_id) " +
@@ -163,6 +168,7 @@ public class PersonalDBImpl implements IPersonal {
                     stm.executeUpdate();
                     break;
             }
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -175,6 +181,7 @@ public class PersonalDBImpl implements IPersonal {
         try {
             DelegacionDBImpl delegacionDao = new DelegacionDBImpl();
             String FIND_PERSONAL = "SELECT * FROM personal WHERE id = ?";
+            Connection connection = DbDonnection.connectDatabase();
             PreparedStatement stm = connection.prepareStatement(FIND_PERSONAL);
             stm.setInt(1, idPersonal);
             ResultSet res = stm.executeQuery();
@@ -228,6 +235,7 @@ public class PersonalDBImpl implements IPersonal {
                         break;
                 }
             }
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -240,8 +248,9 @@ public class PersonalDBImpl implements IPersonal {
         try {
             String[] tipoPersonalClassSplit = personal.getClass().getName().split("\\.");
             String tipoPersonalClass = tipoPersonalClassSplit[tipoPersonalClassSplit.length - 1];
-            PreparedStatement stm;
 
+            Connection connection = DbDonnection.connectDatabase();
+            PreparedStatement stm;
             switch (tipoPersonalClass) {
                 case "Empleado":
                     String UPDATE_EMPLEADO = "UPDATE personal SET nombre = ?, nif = ?, direccion = ?, salario = ?, delegacion_id = ? " +
@@ -294,6 +303,7 @@ public class PersonalDBImpl implements IPersonal {
                     stm.executeUpdate();
                     break;
             }
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -305,14 +315,19 @@ public class PersonalDBImpl implements IPersonal {
     public void deletePersonal(int idPersonal) {
         try {
             String DELETE_PROYECTO_PERSONAL = "DELETE FROM proyecto_personal WHERE personal_id = ?";
+            String DELETE_PERSONAL = "DELETE FROM personal WHERE id = ?";
+
+            Connection connection = DbDonnection.connectDatabase();
+
             PreparedStatement stmProyectoPersonal = connection.prepareStatement(DELETE_PROYECTO_PERSONAL);
             stmProyectoPersonal.setInt(1, idPersonal);
             stmProyectoPersonal.executeUpdate();
 
-            String DELETE_PERSONAL = "DELETE FROM personal WHERE id = ?";
             PreparedStatement stm = connection.prepareStatement(DELETE_PERSONAL);
             stm.setInt(1, idPersonal);
             stm.executeUpdate();
+
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

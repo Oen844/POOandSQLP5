@@ -2,14 +2,14 @@ package com.P5.DAO;
 
 import com.P5.DAO.interfaces.IDelegacion;
 import com.P5.entities.Delegacion;
+import com.P5.utils.DbDonnection;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.P5.main.Main.connection;
 
 public class DelegacionDBImpl implements IDelegacion {
 
@@ -22,8 +22,10 @@ public class DelegacionDBImpl implements IDelegacion {
                 + "email VARCHAR(255) NOT NULL,"
                 + "central TINYINT(1) NOT NULL DEFAULT 0,"
                 + "PRIMARY KEY (id))";
+        Connection connection = DbDonnection.connectDatabase();
         PreparedStatement stm = connection.prepareStatement(CREATE_TABLE_DELEGACION);
         stm.executeUpdate();
+        connection.close();
     }
 
     @Override
@@ -32,6 +34,7 @@ public class DelegacionDBImpl implements IDelegacion {
 
         try {
             String FIND_ALL_DELEGACION = "SELECT * FROM delegaciones";
+            Connection connection = DbDonnection.connectDatabase();
             PreparedStatement stm = connection.prepareStatement(FIND_ALL_DELEGACION);
             ResultSet res = stm.executeQuery();
             while (res.next()) {
@@ -45,6 +48,8 @@ public class DelegacionDBImpl implements IDelegacion {
                 );
                 delegacionesList.add(d);
             }
+
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -56,6 +61,7 @@ public class DelegacionDBImpl implements IDelegacion {
     public void createDelegacion(Delegacion delegacion) {
         try {
             String CREATE_DELEGACION = "INSERT INTO delegaciones VALUES (null, ?, ?, ?, ?, ?)";
+            Connection connection = DbDonnection.connectDatabase();
             PreparedStatement stm = connection.prepareStatement(CREATE_DELEGACION);
             stm.setString(1, delegacion.getCiudad());
             stm.setString(2, delegacion.getDireccion());
@@ -63,6 +69,7 @@ public class DelegacionDBImpl implements IDelegacion {
             stm.setString(4, delegacion.getEmail());
             stm.setBoolean(5, delegacion.getCentral());
             stm.executeUpdate();
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -74,6 +81,7 @@ public class DelegacionDBImpl implements IDelegacion {
 
         try {
             String FIND_DELEGACION = "SELECT * FROM delegaciones WHERE id = ?";
+            Connection connection = DbDonnection.connectDatabase();
             PreparedStatement stm = connection.prepareStatement(FIND_DELEGACION);
             stm.setInt(1, Integer.parseInt(id));
             ResultSet res = stm.executeQuery();
@@ -87,6 +95,7 @@ public class DelegacionDBImpl implements IDelegacion {
                         res.getBoolean("central")
                 );
             }
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -104,6 +113,7 @@ public class DelegacionDBImpl implements IDelegacion {
                     "email = ?, " +
                     "central = ? " +
                     "WHERE id = ?";
+            Connection connection = DbDonnection.connectDatabase();
             PreparedStatement stm = connection.prepareStatement(UPDATE_DELEGACION);
             stm.setString(1, delegacion.getCiudad());
             stm.setString(2, delegacion.getDireccion());
@@ -112,6 +122,7 @@ public class DelegacionDBImpl implements IDelegacion {
             stm.setBoolean(5, delegacion.getCentral());
             stm.setInt(6, delegacion.getId());
             stm.executeUpdate();
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -123,11 +134,14 @@ public class DelegacionDBImpl implements IDelegacion {
     public void deleteDelegacion(String id) {
         try {
             String DELETE_DELEGACION = "DELETE FROM delegaciones WHERE id = ?";
+            Connection connection = DbDonnection.connectDatabase();
             PreparedStatement stm = connection.prepareStatement(DELETE_DELEGACION);
             stm.setInt(1, Integer.parseInt(id));
             stm.executeUpdate();
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
+
 }

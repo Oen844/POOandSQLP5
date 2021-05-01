@@ -21,7 +21,7 @@ public class PersonalDTO {
         String direccion = personalXml.getElementsByTagName("direccion").item(0).getTextContent();
 
         String delegacionId = personalXml.getElementsByTagName("delegacionId").item(0).getTextContent();
-        IDelegacion delegacionDao = DAOFactory.getDelegacionDAO();
+        IDelegacion delegacionDao = DAOFactory.getDelegacionDAO(true);
         Delegacion delegacion = delegacionDao.readDelegacion(delegacionId);
 
         String tipoPersonal = personalXml.getElementsByTagName("tipoPersonal").item(0).getTextContent();

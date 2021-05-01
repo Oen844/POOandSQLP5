@@ -42,7 +42,7 @@ public class ProyectoDTO {
         }
 
         String delegacionId = proyectoXml.getElementsByTagName("delegacionId").item(0).getTextContent();
-        IDelegacion delegacionDao = DAOFactory.getDelegacionDAO();
+        IDelegacion delegacionDao = DAOFactory.getDelegacionDAO(true);
         Delegacion delegacion = delegacionDao.readDelegacion(delegacionId);
 
         Date fechaInicioDate = (Date) new SimpleDateFormat("DD/MM/YYYY").parse(fechaInicio);

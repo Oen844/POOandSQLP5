@@ -3,15 +3,11 @@ package com.P5.DAO;
 import com.P5.DAO.interfaces.IProyecto;
 import com.P5.entities.Personal;
 import com.P5.entities.Proyecto;
-import org.xml.sax.SAXException;
+import com.P5.utils.DbDonnection;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.P5.main.Main.connection;
 
 public class ProyectoDBImpl implements IProyecto {
 
@@ -31,8 +27,6 @@ public class ProyectoDBImpl implements IProyecto {
                 + "delegacion_id int(11),"
                 + "PRIMARY KEY (id),"
                 + "FOREIGN KEY (delegacion_id) REFERENCES delegaciones(id))";
-        PreparedStatement stmPorjectTable = connection.prepareStatement(CREATE_TABLE_PROYECTO);
-        stmPorjectTable.executeUpdate();
 
         String CREATE_TABLE_PROYECTO_PERSONAL = "CREATE TABLE IF NOT EXISTS proyecto_personal ("
                 + "proyecto_id int(11),"
@@ -40,8 +34,16 @@ public class ProyectoDBImpl implements IProyecto {
                 + "PRIMARY KEY (proyecto_id, personal_id),"
                 + "FOREIGN KEY (proyecto_id) REFERENCES proyectos(id),"
                 + "FOREIGN KEY (personal_id) REFERENCES personal(id))";
+
+        Connection connection = DbDonnection.connectDatabase();
+
+        PreparedStatement stmPorjectTable = connection.prepareStatement(CREATE_TABLE_PROYECTO);
+        stmPorjectTable.executeUpdate();
+
         PreparedStatement stmProjectPersonalTable = connection.prepareStatement(CREATE_TABLE_PROYECTO_PERSONAL);
         stmProjectPersonalTable.executeUpdate();
+
+        connection.close();
     }
 
     @Override
@@ -51,6 +53,7 @@ public class ProyectoDBImpl implements IProyecto {
         try {
             DelegacionDBImpl delegacionDao = new DelegacionDBImpl();
             String FIND_PROYECTOS_DELEGACION = "SELECT * FROM proyectos WHERE delegacion_id = ?";
+            Connection connection = DbDonnection.connectDatabase();
             PreparedStatement stm = connection.prepareStatement(FIND_PROYECTOS_DELEGACION);
             stm.setInt(1, Integer.parseInt(delegacionId));
             ResultSet res = stm.executeQuery();
@@ -71,10 +74,11 @@ public class ProyectoDBImpl implements IProyecto {
                         delegacionDao.readDelegacion(delegacionId)
                 ));
             }
+
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
         return projectsList;
     }
 
@@ -84,12 +88,14 @@ public class ProyectoDBImpl implements IProyecto {
         try {
             PersonalDBImpl personalDao = new PersonalDBImpl();
             String FIND_PERSONAL_DELEGACION = "SELECT * FROM proyecto_personal WHERE proyecto_id = ?";
+            Connection connection = DbDonnection.connectDatabase();
             PreparedStatement stm = connection.prepareStatement(FIND_PERSONAL_DELEGACION);
             stm.setInt(1, proyectoId);
             ResultSet res = stm.executeQuery();
             while (res.next()) {
                 personalList.add(personalDao.readPersonal(res.getInt("personal_id")));
             }
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -104,6 +110,7 @@ public class ProyectoDBImpl implements IProyecto {
         try {
             DelegacionDBImpl delegacionDao = new DelegacionDBImpl();
             String FIND_PROYECTO = "SELECT * FROM proyectos WHERE nombre = ?";
+            Connection connection = DbDonnection.connectDatabase();
             PreparedStatement stm = connection.prepareStatement(FIND_PROYECTO);
             stm.setString(1, nombre);
             ResultSet res = stm.executeQuery();
@@ -125,6 +132,7 @@ public class ProyectoDBImpl implements IProyecto {
                         delegacionDao.readDelegacion(res.getString("delegacion_id"))
                 );
             }
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -139,6 +147,7 @@ public class ProyectoDBImpl implements IProyecto {
                     "nombre, pais, localizacion, linea_accion, sublinea_accion, fecha_inicio, " +
                     "fecha_fin, socio_local, financiador, financiacion_aportada, delegacion_id) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            Connection connection = DbDonnection.connectDatabase();
             PreparedStatement stmProyecto = connection.prepareStatement(CREATE_PROYECTO, Statement.RETURN_GENERATED_KEYS);
             stmProyecto.setString(1, proyecto.getNombre());
             stmProyecto.setString(2, proyecto.getPais());
@@ -169,6 +178,8 @@ public class ProyectoDBImpl implements IProyecto {
                     stmProyectoPersonal.executeUpdate();
                 }
             }
+
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -181,6 +192,7 @@ public class ProyectoDBImpl implements IProyecto {
                     "subLinea_accion = ?, fecha_inicio = ?, fecha_fin = ?, socio_local = ?, financiador = ?, " +
                     "financiacion_aportada = ? " +
                     "WHERE id = ?";
+            Connection connection = DbDonnection.connectDatabase();
             PreparedStatement stm = connection.prepareStatement(UPDATE_PROYECTO);
             stm.setString(1, proyecto.getNombre());
             stm.setString(2, proyecto.getPais());
@@ -194,6 +206,7 @@ public class ProyectoDBImpl implements IProyecto {
             stm.setString(10, proyecto.getFinanciacionAportada());
             stm.setInt(11, proyecto.getId());
             stm.executeUpdate();
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -205,6 +218,7 @@ public class ProyectoDBImpl implements IProyecto {
     public void deleteProyecto(String nombre) {
         try {
             String SELETECT_PROYECTO = "SELECT * FROM proyectos WHERE nombre = ?";
+            Connection connection = DbDonnection.connectDatabase();
             PreparedStatement stmSelectProyect = connection.prepareStatement(SELETECT_PROYECTO);
             stmSelectProyect.setString(1, nombre);
             ResultSet res = stmSelectProyect.executeQuery();
@@ -222,6 +236,8 @@ public class ProyectoDBImpl implements IProyecto {
                 stm.setString(1, nombre);
                 stm.executeUpdate();
             }
+
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
